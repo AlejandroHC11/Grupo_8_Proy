@@ -1,47 +1,92 @@
-.main-container {
-    display: flex;
+.outer{
     height: 100vh;
-    margin: 0;
-    justify-content: center;
-    align-items: center;
     background-color: black;
 }
-#box {
-    background-color: white;
-    padding: 30px;
-    width: 380px;
-    border-radius: 10px;
+
+.panel-heading{
     text-align: center;
+    margin-bottom: 10px;
 }
-#profile{
-    width:80px;
-    margin: 10px;
+
+#forget{
+    min-width: 100px;
+    margin-left: auto;
+    text-decoration: none;
+    cursor: pointer;
+    color: #000000;
+
 }
-#title{
-    font-weight: bold;
+
+a:hover{
+    text-decoration: none;
 }
-.txtbox{
-    margin: 30px 20px 30px 0px;
-    width: 210px;
-    border: none;
-    border-bottom: 1px solid black; 
+
+.form-inline label{
+    padding-left: 10px;
+    margin: 0;
+    cursor: pointer;
 }
-.button{
-    margin: 10px;
-    width: 250px;
-    padding: 5px;
-    background-color: #ffffff;
+.btn{
+    margin-top: 20px;
+    border-radius: 15px;
     border: 2px solid #000000;
-    border-radius: 20px;
+
+    
+
+    
 }
-.txtlogo{
-    width: 20px;
-    height: 20px;
-    margin-right: 10px;
+
+.panel{
+    min-height: 380px;
+    border-radius: 12px;
+    margin-top: 100px;  
 }
-.txt-container{
+
+.input-field{
+    border-radius: 5px;
+    padding: 5px;
     display: flex;
     align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
+    cursor: pointer;
+    border: 1px solid #ddd;
+    color: black;
+}
+
+.input-field.error{ 
+    border: 1px solid black;
+    color: black;
+}
+input[type='text'],
+input[type='password']{
+    border: none;
+    outline: none;
+    box-shadow: none;
+    width: 100%;
+}
+
+.fa-eye-slash.btn{
+    border: none;
+    outline: none;
+    box-shadow: none;
+}
+
+img{
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 50%;
+    position: relative;
+}
+
+.bordert{
+    border-top: 1px solid #aaa;
+    position: relative;
+}
+.bordert::after{
+    content: "or connect with";
+    position: absolute;
+    top:  -13px;
+    left: 36%;
+    background-color: #fff;
+    padding: 0 8px;
 }

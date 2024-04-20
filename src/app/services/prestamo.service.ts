@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class PrestamoService {
 
-  url:string = "https://localhost:7091/api/Prestamo/"
+  url:string = "https://localhost:7219/api/Prestamo/"
   constructor(private httpClient:HttpClient) { }
 
   getPrestamos():Observable<Prestamo[]>{

@@ -10,6 +10,8 @@ import { NewComponent } from './components/new/new.component';
 import { EmptyComponent } from './components/empty/empty.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -19,11 +21,13 @@ import { FormsModule } from '@angular/forms';
     SignupComponent,
     PrestamosComponent,
     NewComponent,
-    EmptyComponent
+    EmptyComponent,
+    
   ],
   imports: [
     FormsModule,
     HttpClientModule,
+    ReactiveFormsModule,
     BrowserModule,
     RouterModule.forRoot([
       {path:'login',component:LoginComponent},

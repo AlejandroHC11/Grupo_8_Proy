@@ -1,18 +1,58 @@
-<div class="main-container">
-    <div id="box">
-        <div id="header-container">
-            <img id="profile" src="assets/img/profile.png" alt="Profile">
-            <p id="title">Inicia sesión</p>
-            <div class="txt-container">
-                <img class="txtlogo" src="assets/img/user.png" alt="User">
-                <input type="text" class="txtbox" placeholder="Usuario">
+<div class="outer">
+    <div class="container">
+        <div class="row">
+            <div class="offset-md-2 col-lg-5 col-md-7 offset-lg-4 offset-md-3">
+                <div class="panel border bg-white">
+                    <div class="panel-heading">
+                        <h3 class="pt-3 font-weight-bold">Login</h3>
+                        <img id="profile" src="assets/img/profile.png" alt="Profile">
+                    </div>
+                    <div class="panel-body p-3">
+                        <form [formGroup]="loginForm">
+                            <div class="form-group pt-3">
+                                <div class="input-field" [class.error]="loginForm.controls['username'].dirty && loginForm.hasError('required','username')">
+                                    <span class="fa fa-user p-2"></span>
+                                    <input formControlName="username" type="text" placeholder="Username">
+                                </div>
+                            </div>
+                            <small *ngIf="loginForm.controls['username'].dirty && loginForm.hasError('required','username')" class="text-danger">
+                                *Username is required</small>
+                            <div class="form-group pt-3">
+                                <div class="input-field" [class.error]="loginForm.controls['password'].dirty && loginForm.hasError('required','password')" >
+                                    <span class="fa fa-lock p-2"></span>
+                                    <input formControlName="password" [type]="type" placeholder="Password">
+                                    <span (click)="hideShowPass()"  class="fa {{eyeIcon}}"></span>
+                                </div>
+                            </div>
+                            <small *ngIf="loginForm.controls['password'].dirty && loginForm.hasError('required','password')"  class="text-danger">*Password is required</small>
+                            <div class="from-inline fr mt-4">
+                                <a id="forget" class="font-weight-bold">Forget Password</a>
+                            </div>
+                            <button (click)="onLogin()" type="submit"   class="btn btn-dark btn-block mt-4 w-100">Login</button> 
+                            <!-- [routerLink]="['/prestatario']" -->
+                            <!-- <div class="text-center pt-4 text-muted">Don't have account? <a id="forget" routerLink="/signup">Sign Up</a></div> -->
+                            <button  type="submit"  [routerLink]="['/signup']" class="btn btn-dark btn-block mt-4 w-100">REGISTRARSE</button>                           
+                        </form>
+                    </div>
+                    <div class="mx-3 my-2 py-2 bordert">
+                        <div class="text-center py-3">
+                            <a href="https://www.facebook.com" target="_blank" class="px-2">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook">
+                              </a>
+                              
+                              <!-- Google Link -->
+                              <a href="https://www.google.com" target="_blank" class="px-2">
+                                <img src="https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-suite-everything-you-need-know-about-google-newest-0.png" alt="Google">
+                              </a>
+                              
+                              <!-- GitHub Link -->
+                              <a href="https://www.github.com" target="_blank" class="px-2">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" alt="GitHub">
+                              </a>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="txt-container">
-                <img class="txtlogo" src="assets/img/key.png" alt="Password">
-                <input type="text" class="txtbox" placeholder="Contraseña">
-            </div>         
-        </div>   
-        <button class="button" [routerLink]="['/prestatario']">ENTRAR</button>
-        <button class="button" [routerLink]="['/signup']">REGISTRARSE</button>
+        </div>
     </div>
 </div>
