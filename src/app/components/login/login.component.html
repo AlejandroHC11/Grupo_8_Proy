@@ -1,0 +1,18 @@
+<div class="main-container">
+    <div id="box">
+        <div id="header-container">
+            <img id="profile" src="assets/img/profile.png" alt="Profile">
+            <p id="title">Inicia sesión</p>
+            <div class="txt-container">
+                <img class="txtlogo" src="assets/img/user.png" alt="User">
+                <input type="text" class="txtbox" placeholder="Usuario">
+            </div>
+            <div class="txt-container">
+                <img class="txtlogo" src="assets/img/key.png" alt="Password">
+                <input type="text" class="txtbox" placeholder="Contraseña">
+            </div>         
+        </div>   
+        <button class="button" [routerLink]="['/prestatario']">ENTRAR</button>
+        <button class="button" [routerLink]="['/signup']">REGISTRARSE</button>
+    </div>
+</div>

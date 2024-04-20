@@ -1,0 +1,26 @@
+<div id="main-container">
+    <table>
+        <thead>
+            <tr>
+                <th>Nro. Prestamo</th>
+                <th>Importe</th>
+                <th>Sede</th>
+                <th>Moneda</th>
+                <th>Cuotas</th>
+                <th>Estado</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let prestamo of prestamos">
+                <td>{{ prestamo.nroPrestamo }}</td>
+                <td>{{ prestamo.importe }}</td>
+                <td>{{ prestamo.sede }}</td>
+                <td>{{ prestamo.moneda }}</td>
+                <td>{{ prestamo.cuotas }}</td>
+                <td>{{ prestamo.estado }}</td>
+            </tr>
+        </tbody>
+    </table>
+    
+</div>
+

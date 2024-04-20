@@ -1,0 +1,42 @@
+.main-container {
+    display: flex;
+    height: 100vh;
+    margin: 0;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+}
+#box {
+    background-color: white;
+    padding: 30px;
+    width: 380px;
+    border-radius: 10px;
+    text-align: center;
+}
+#profile{
+    width:80px;
+    margin: 10px;
+}
+#title{
+    font-weight: bold;
+}
+.txtbox{
+    margin: 10px 10px 10px 10px;
+    width: 250px;
+    border: none;
+    border-bottom: 1px solid black; 
+}
+.button{
+    margin: 10px;
+    width: 250px;
+    padding: 5px;
+    background-color: #ffffff;
+    border: 2px solid #000000;
+    border-radius: 20px;
+}
+.txt-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
