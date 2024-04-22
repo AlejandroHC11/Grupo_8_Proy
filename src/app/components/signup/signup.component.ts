@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Form, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/services/auth.service';
 import { Router } from '@angular/router';
+import ValidateForm from 'src/app/helpers/validateform';
 
 @Component({
   selector: 'app-signup',
@@ -24,6 +25,7 @@ export class SignupComponent implements OnInit {
       lastName: ['',Validators.required],
       userName: ['',Validators.required],
       email:    ['',Validators.required],
+      dni: ['',Validators.required],
       password: ['',Validators.required],
     })
   }
@@ -50,21 +52,12 @@ export class SignupComponent implements OnInit {
       
 
     }else{
-      this.validateAllFormFields(this.signUpForm)
+      ValidateForm.validateAllFormFields(this.signUpForm)
       alert("Your form is invalid")
     }
   }
 
-  private validateAllFormFields(formGroup:FormGroup){
-    Object.keys(formGroup.controls).forEach(field=>{
-      const control = formGroup.get(field);
-      if(control instanceof FormControl){
-        control.markAsDirty({onlySelf:true})
-      }else if(control instanceof FormGroup){
-        this.validateAllFormFields(control)
-      }
-    })
-  }
+  
 
 }
 

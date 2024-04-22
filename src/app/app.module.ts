@@ -11,6 +11,12 @@ import { EmptyComponent } from './components/empty/empty.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+import { AuthGuard } from './guards/auth.guard';
+
+
 
 
 @NgModule({
@@ -22,16 +28,21 @@ import { ReactiveFormsModule } from '@angular/forms';
     PrestamosComponent,
     NewComponent,
     EmptyComponent,
+    DashboardComponent,
     
   ],
   imports: [
+    BrowserAnimationsModule, 
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    BrowserModule,
+    BrowserModule,   
+    ToastrModule.forRoot(),
     RouterModule.forRoot([
+      {path:'',redirectTo:'login',pathMatch:'full'},
       {path:'login',component:LoginComponent},
       {path:'signup',component:SignupComponent},
+      {path:'dashboard',component:DashboardComponent, canActivate: [AuthGuard]},
       {path:'prestatario',component:PrestatarioComponent, children: [
         { path: '', component: EmptyComponent },
         { path: 'prestamos', component: PrestamosComponent },
