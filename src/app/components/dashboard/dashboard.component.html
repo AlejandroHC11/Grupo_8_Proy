@@ -1,3 +1,12 @@
 
 <button (click)="Logout()" class="btn btn-danger">Log Out</button>
-<h1>dashboard works!</h1>
+<nav class="navbar navbar-light bg-light justify-content-between">
+    <a class="navbar-brand">Navbar</a>
+    <div>
+        <span>Hello Sash</span>
+    </div>
+</nav>
+
+<ul *ngFor="let user of users" >
+    <li>{{user.UserName}}</li>
+</ul>

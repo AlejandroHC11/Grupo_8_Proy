@@ -14,9 +14,10 @@ export class DashboardComponent implements OnInit{
 
   ngOnInit(){
       this.api.getUsers()
-      .subscribe(res =>{
-        this.users = res;
-      })
+      .subscribe(
+        res => this.users = res,
+        err => console.error(err)
+      )
   }
 
   Logout(){

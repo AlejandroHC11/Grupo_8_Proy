@@ -8,13 +8,14 @@ import { SignupComponent } from './components/signup/signup.component';
 import { PrestamosComponent } from './components/prestamos/prestamos.component';
 import { NewComponent } from './components/new/new.component';
 import { EmptyComponent } from './components/empty/empty.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { AuthGuard } from './guards/auth.guard';
+import { TokenInterceptor } from './interceptors/token.interceptor';
 
 
 
@@ -51,7 +52,11 @@ import { AuthGuard } from './guards/auth.guard';
       {path: '**', redirectTo: 'login', pathMatch: 'full'}
     ])
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: TokenInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

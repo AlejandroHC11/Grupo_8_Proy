@@ -29,21 +29,23 @@
                                 </div>
                             </div>
                             <small  *ngIf="signUpForm.controls['dni'].dirty && signUpForm.hasError('required','dni')" class="text-danger">*Dni is required</small>
+
                             <div class="form-group pt-3">
                                 <div class="input-field" [class.error]="signUpForm.controls['email'].dirty && signUpForm.hasError('required','email')">
                                     <span class="fa fa-user p-2"></span>
                                     <input formControlName="email"  type="text" placeholder="Email">
                                 </div>
-                            </div>
-                            
+                            </div>                        
                             <small *ngIf="signUpForm.controls['email'].dirty && signUpForm.hasError('required','email')" class="text-danger">*Email is required</small>
+
                             <div class="form-group pt-3">
                                 <div class="input-field" [class.error]="signUpForm.controls['userName'].dirty && signUpForm.hasError('required','userName')">
                                     <span class="fa fa-user p-2"></span>
                                     <input formControlName="userName" type="text" placeholder="Username">
                                 </div>
                             </div>  
-                            <small *ngIf="signUpForm.controls['userName'].dirty && signUpForm.hasError('required','userName')" class="text-danger">*Username is required</small>                         
+                            <small *ngIf="signUpForm.controls['userName'].dirty && signUpForm.hasError('required','userName')" class="text-danger">*Username is required</small> 
+                                                    
                             <div class="form-group pt-3">
                                 <div class="input-field" [class.error]="signUpForm.controls['password'].dirty && signUpForm.hasError('required','password')">
                                     <span class="fa fa-lock p-2"></span>
