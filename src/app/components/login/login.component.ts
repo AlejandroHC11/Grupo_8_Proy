@@ -4,6 +4,7 @@ import { AuthService } from '../../services/services/auth.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import ValidateForm from 'src/app/helpers/validateform';
+import { UserStoreService } from 'src/app/services/user-store.service';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +18,13 @@ export class LoginComponent implements OnInit {
   eyeIcon: string = "fa-solid fa-eye-slash";
   loginForm! : FormGroup;
 
-  constructor(private fb: FormBuilder, private auth: AuthService, private router:Router,private toastr: ToastrService) { }
+  constructor(
+    private fb: FormBuilder, 
+    private auth: AuthService, 
+    private router:Router,
+    private toastr: ToastrService,
+    private userStore: UserStoreService
+  ) { }
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
@@ -40,9 +47,12 @@ export class LoginComponent implements OnInit {
       this.auth.login(this.loginForm.value)
       .subscribe({
         next:(res) =>{
-         // console.log(res.message);
+          console.log(res.message);
           this.loginForm.reset();
           this.auth.storeToken(res.token);
+          const tokernPayload = this.auth.decodedToker();
+          this.userStore.setFullNameForStore(tokernPayload.name);
+          this.userStore.setRoleForStore(tokernPayload.role);
           this.toastr.success("SUCCESS",'Bienvenido')
           this.router.navigate(['dashboard'])
         },
@@ -50,12 +60,13 @@ export class LoginComponent implements OnInit {
         this.toastr.success("ERROR",'Acces Denied');
           console.log(err);
         }
-      })
+      });
 
     }else{
       //throw the error using toaster and with required fields
       ValidateForm.validateAllFormFields(this.loginForm);
-      alert("Your form is invalid")
+      this.toastr.warning("ERROR",'Login Failed');
+
     }
   }
 

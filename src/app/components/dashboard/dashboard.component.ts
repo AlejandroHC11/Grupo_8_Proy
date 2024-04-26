@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/services/services/api.service';
 import { AuthService } from 'src/app/services/services/auth.service';
+import { UserStoreService } from 'src/app/services/user-store.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,18 +10,42 @@ import { AuthService } from 'src/app/services/services/auth.service';
 })
 export class DashboardComponent implements OnInit{
 
-  public users: any = [];
-  constructor(private api : ApiService, private auth: AuthService) {}
+  public users:any = [];
+  public role!:string;
+  public fullName :  string = "";
+  constructor(private api : ApiService, private auth: AuthService, private userStore: UserStoreService) {}
 
   ngOnInit(){
       this.api.getUsers()
-      .subscribe(
-        res => this.users = res,
-        err => console.error(err)
-      )
+      .subscribe(res=>{
+        this.users = res;
+      });
+
+     this.userStore.getFullNameFromStore()
+     .subscribe(val=>{
+      const fullNameFromToken = this.auth.getfullNameFromToker();
+      this.fullName = val || fullNameFromToken
+     }) 
+
+     this.userStore.getRoleFromStore()
+     .subscribe(val => {
+      const roleFromToken = this.auth.getRolFromToker();
+      this.role = val || roleFromToken;
+     })
   }
+
+ 
 
   Logout(){
     this.auth.signOut();
+  }
+  editUser(user: any) {
+    // Lógica para editar el usuario
+    console.log('Editar usuario', user);
+  }
+
+  deleteUser(user: any) {
+    // Lógica para eliminar el usuario
+    console.log('Eliminar usuario', user);
   }
 }

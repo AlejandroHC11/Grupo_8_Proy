@@ -3,6 +3,7 @@ import { Form, FormBuilder, FormControl, FormGroup, Validators } from '@angular/
 import { AuthService } from '../../services/services/auth.service';
 import { Router } from '@angular/router';
 import ValidateForm from 'src/app/helpers/validateform';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-signup',
@@ -17,7 +18,7 @@ export class SignupComponent implements OnInit {
   eyeIcon: string = "fa-solid fa-eye-slash";
   signUpForm!: FormGroup;
 
-  constructor(private fb: FormBuilder, private auth: AuthService, private router: Router) { }
+  constructor(private fb: FormBuilder, private auth: AuthService, private router: Router,private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.signUpForm = this.fb.group({
@@ -47,13 +48,14 @@ export class SignupComponent implements OnInit {
         })
         ,error:(err=>{
           alert(err?.error.message)
+          this.toastr.warning("Register Failed", 'ERROR');
         })
       })
       
 
     }else{
       ValidateForm.validateAllFormFields(this.signUpForm)
-      alert("Your form is invalid")
+      this.toastr.warning("ERROR",'Login Failed');
     }
   }
 

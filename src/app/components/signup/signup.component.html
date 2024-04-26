@@ -36,7 +36,7 @@
                                     <input formControlName="email"  type="text" placeholder="Email">
                                 </div>
                             </div>                        
-                            <small *ngIf="signUpForm.controls['email'].dirty && signUpForm.hasError('required','email')" class="text-danger">*Email is required</small>
+                            <small *ngIf="signUpForm.controls['email'].dirty && signUpForm.hasError('required','email')" class="text-danger">*Email is required </small>
 
                             <div class="form-group pt-3">
                                 <div class="input-field" [class.error]="signUpForm.controls['userName'].dirty && signUpForm.hasError('required','userName')">
@@ -53,7 +53,7 @@
                                     <span (click)="hideShowPass()"  class="fa {{eyeIcon}}"></span>
                                 </div>
                             </div> 
-                            <small *ngIf="signUpForm.controls['password'].dirty && signUpForm.hasError('required','password')" class="text-danger">*Password is required</small>                      
+                            <small *ngIf="signUpForm.controls['password'].dirty && signUpForm.hasError('required','password')" class="text-danger">*Password is required >7 characters, capital letters and special characters *.$,#</small>                      
                             <button type="submit" class="btn btn-dark btn-block mt-4 w-100" (click)="onSingup()">Registrar</button>
                             <div class="text-center pt-4 text-muted">Already have account? <a id="forget" routerLink="/login">Login</a></div>
                         </form>    

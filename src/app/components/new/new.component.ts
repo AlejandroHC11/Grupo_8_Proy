@@ -20,6 +20,7 @@ export class NewComponent {
       alert('No se ingresaron todos los datos')
       return false
     }
+    
     var prestamo = {'importe': this.importe, 'sede':this.sede, 'moneda':this.moneda, 'cuotas':this.cuotas, 'estado':'Pendiente'}
     this.prestamoService.createPrestamo(prestamo).subscribe(res => {
       alert('Se generó la solicitud de prestamo')

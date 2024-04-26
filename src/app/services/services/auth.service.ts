@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Route, Router } from '@angular/router';
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { JitEvaluator } from '@angular/compiler';
+
 
 @Injectable({
   providedIn: 'root'
@@ -8,10 +11,13 @@ import { Route, Router } from '@angular/router';
 export class AuthService {
 
   private baseUrl: string = "https://localhost:7219/api/User/"
+  private userPayload:any;
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router) { 
+    this.userPayload = this.decodedToker(); 
+  }
 
-  signUp(userObj:any) {
+  signUp(userObj: any) {
     return this.http.post<any>(`${this.baseUrl}register`,userObj)
   }
 
@@ -33,6 +39,26 @@ export class AuthService {
 
   isLoggedIn(): boolean {
     return !!localStorage.getItem('token')
+  }
+
+  decodedToker(){
+    const jwtHelper = new JwtHelperService();
+    const token = this.getToken()!;
+    console.log(jwtHelper.decodeToken(token))
+    return jwtHelper.decodeToken(token)
+  }
+
+  getfullNameFromToker(){
+    if(this.userPayload)
+      return this.userPayload.name;
+
+
+  }
+
+  getRolFromToker(){
+    if(this.userPayload)
+      return this.userPayload.role;
+
   }
 
 }
