@@ -51,14 +51,15 @@ export class AuthService {
   getfullNameFromToker(){
     if(this.userPayload)
       return this.userPayload.name;
-
-
+  }
+  getIdFromToker(){
+    if(this.userPayload)
+      return this.userPayload.primarysid;
   }
 
   getRolFromToker(){
     if(this.userPayload)
       return this.userPayload.role;
-
   }
 
 }

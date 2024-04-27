@@ -1,3 +1,14 @@
+
+/* Agrega una nueva regla para el formulario */
+.form-container {
+    max-width: 500px; /* o el ancho que prefieras */
+    margin-right: auto; /* Mantiene el margen automático a la derecha */
+    margin-left: 10%;
+    margin-top: 25px;
+    padding: 20px; /* Esto añade un poco de espacio alrededor del formulario dentro del contenedor */
+}
+
+
 .outer{
     height: 100vh;
     background-color: black;

@@ -16,6 +16,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { AuthGuard } from './guards/auth.guard';
 import { TokenInterceptor } from './interceptors/token.interceptor';
+import { InversionistaComponent } from './components/inversionista/inversionista.component';
+import { SignUpFormComponent } from './shared/sign-up-form/sign-up-form.component';
+import { DashboardRigthComponent } from './components/dashboard-rigth/dashboard-rigth.component';
+import { JefeprestamistaComponent } from './components/jefeprestamista/jefeprestamista.component';
 
 
 
@@ -30,6 +34,10 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
     NewComponent,
     EmptyComponent,
     DashboardComponent,
+    InversionistaComponent,
+    SignUpFormComponent,
+    DashboardRigthComponent,
+    JefeprestamistaComponent,
     
   ],
   imports: [
@@ -43,6 +51,16 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
       {path:'',redirectTo:'login',pathMatch:'full'},
       {path:'login',component:LoginComponent},
       {path:'signup',component:SignupComponent},
+      {path:'inversionista',component:InversionistaComponent, children: [
+        { path: '', component: EmptyComponent },
+        { path: 'dashboard-rigth', component: DashboardRigthComponent },
+        { path: 'sign-up-form', component: SignUpFormComponent }
+      ]},
+      {path:'jefeprestamista',component:JefeprestamistaComponent, children: [
+        { path: '', component: EmptyComponent },
+        { path: 'dashboard-rigth', component: DashboardRigthComponent },
+        { path: 'sign-up-form', component: SignUpFormComponent }
+      ]},
       {path:'dashboard',component:DashboardComponent, canActivate: [AuthGuard]},
       {path:'prestatario',component:PrestatarioComponent, children: [
         { path: '', component: EmptyComponent },

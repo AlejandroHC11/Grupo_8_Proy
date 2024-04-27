@@ -1,0 +1,130 @@
+
+/* Estilo general del contenido */
+#wrapper {
+    display: flex;
+    width: 100%;
+}
+
+#sidebar-wrapper {
+    min-width: 250px;
+    max-width: 250px;
+    height: 100vh;
+    background: #f8f9fa;
+    border-right: 1px solid #ddd;
+}
+
+.sidebar-heading {
+    padding: 0.875rem 1.25rem;
+    font-size: 1.2em;
+    background: #000000;
+    color: white;
+}
+
+.list-group-item-action {
+    width: 100%;
+    color: #333;
+}
+
+#page-content-wrapper {
+    width: 95%;
+    padding-left: 20px;
+}
+/* Estilos de la tabla */
+.table {
+    margin-top: 20px;
+}
+
+.table th {
+    background-color: #000000;
+    color: white;
+}
+
+.table-hover tbody tr:hover {
+    background-color: #f5f5f5;
+}
+
+/* Responsive adjustments */
+@media (max-width: 850px) {
+    #sidebar-wrapper {
+        min-width: 100px;
+        max-width: 100px;
+    }
+
+    #page-content-wrapper {
+        padding-left: 10px;
+    }
+
+    .table-responsive {
+        margin-top: 15px;
+    }
+}
+.list-group-item-action {
+    width: 100%;
+    color: #333;
+}
+/* Estilos para el navbar */
+.navbar {
+    background-color: #000; /* Fondo negro */
+    color: #fff; /* Texto blanco */
+    border-bottom: 3px solid #333; /* Borde azul para destacar */
+}
+
+.navbar-brand {
+    font-size: 1.5em; /* Tamaño más grande para la marca */
+    font-weight: bold; /* Fuente en negrita */
+    color: #fff; /* Texto blanco */
+}
+
+/* Cambia el color del texto del enlace para que coincida con el navbar */
+.navbar-light .navbar-nav .nav-link {
+    color: #fff;
+}
+
+/* Cambia el color al pasar el mouse para mejorar la interacción */
+.navbar-light .navbar-nav .nav-link:hover {
+    background-color: #333; /* Fondo más oscuro al pasar el mouse */
+    color: #ddd; /* Texto más claro al pasar el mouse */
+}
+
+/* Resalta el elemento activo con un fondo más oscuro y texto más claro */
+.navbar-light .navbar-nav .active>.nav-link,
+.navbar-light .navbar-nav .nav-link.active,
+.navbar-light .navbar-nav .nav-link.show,
+.navbar-light .navbar-nav .show>.nav-link {
+    background-color: #333;
+    color: #ddd;
+}
+
+/* Ajustes para que el navbar sea fijo en la parte superior de la página */
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1020;
+}
+
+/* Estilos para el título en la navbar */
+.navbar .navbar-brand {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fuente con estilo moderno */
+    letter-spacing: 0.05em; /* Espaciado entre letras para un aspecto más elegante */
+}
+
+/* Asegúrate de que el contenedor se ajuste correctamente debajo del navbar */
+#page-content-wrapper {
+    padding-top: 50px; /* Ajusta este valor según la altura de tu navbar */
+}
+.navbar-toggler {
+    display: block !important; /* Forza la visibilidad del botón */
+}
+
+/* Estilos para los botones en las filas de la tabla */
+.table .btn {
+    margin-right: 5px; /* Añade un poco de margen a la derecha de los botones */
+}
+
+/* Asegúrate de que los botones no sean demasiado grandes para las filas de la tabla */
+.table .btn-sm {
+    padding: 0.25rem 0.5rem; /* Ajusta el relleno para los botones pequeños */
+    font-size: 0.7875rem; /* Ajusta el tamaño de la fuente si es necesario */
+    line-height: 1.5; /* Ajusta el interlineado si es necesario */
+    border-radius: 0.2rem; /* Ajusta el radio del borde para bordes más redondeados */
+}

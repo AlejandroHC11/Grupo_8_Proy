@@ -6,9 +6,10 @@
         <div class="sidebar-heading">Menú Principal</div>
         <div class="list-group list-group-flush">
             <a href="#" routerLink="/dashboard" class="list-group-item list-group-item-action bg-light">Dashboard</a>
-            <a href="#" class="list-group-item list-group-item-action bg-light">Usuarios</a>
-            <a href="#" class="list-group-item list-group-item-action bg-light">Jefe Prestamista</a>
-            <a href="#" class="list-group-item list-group-item-action bg-light">Prestamista</a>
+            <a *ngIf="role === 'Inversionista'" href="#" class="list-group-item list-group-item-action bg-light">Usuarios</a>
+            <a *ngIf="role === 'Inversionista'" href="#" routerLink="/inversionista" class="list-group-item list-group-item-action bg-light">Inversionistas</a>
+            <a *ngIf="role === 'Inversionista' || 'JefePrestamista' " href="#" routerLink="/jefeprestamista" class="list-group-item list-group-item-action bg-light">Jefe Prestamista</a>
+            <a *ngIf="role === 'Inversionista' || 'JefePrestamista'||'Prestamista'  " href="#" class="list-group-item list-group-item-action bg-light">Prestamista</a>
             <a href="#" routerLink="/prestatario" class="list-group-item list-group-item-action bg-light">Prestatario</a>
             <a href="#" (click)="Logout()" class="list-group-item list-group-item-action bg-light">Salir</a>
         </div>
@@ -19,7 +20,7 @@
    <div id="page-content-wrapper">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom">
         <div class="container-fluid">
-            <a class="navbar-brand" href="javascript:void(0);">Hola, {{fullName}}</a>
+            <a class="navbar-brand" href="javascript:void(0);">Hola, {{fullName}} - {{role}}</a>
             <!-- Aquí puedes añadir un botón para colapsar la sidebar si lo necesitas -->
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
