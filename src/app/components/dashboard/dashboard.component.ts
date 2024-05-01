@@ -13,6 +13,7 @@ export class DashboardComponent implements OnInit{
   public users:any = [];
   public role!:string;
   public fullName :  string = "";
+  public primarySid :  string = "";
   constructor(private api : ApiService, private auth: AuthService, private userStore: UserStoreService) {}
 
   ngOnInit(){
@@ -32,6 +33,11 @@ export class DashboardComponent implements OnInit{
       const roleFromToken = this.auth.getRolFromToker();
       this.role = val || roleFromToken;
      })
+     const idUser = this.userStore.getIdUserFromStore();
+     if (idUser){
+      this.primarySid = idUser;
+     }
+     
   }
 
  

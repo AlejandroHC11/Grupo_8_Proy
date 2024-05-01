@@ -20,6 +20,8 @@ import { InversionistaComponent } from './components/inversionista/inversionista
 import { SignUpFormComponent } from './shared/sign-up-form/sign-up-form.component';
 import { DashboardRigthComponent } from './components/dashboard-rigth/dashboard-rigth.component';
 import { JefeprestamistaComponent } from './components/jefeprestamista/jefeprestamista.component';
+import { PrestamistaComponent } from './components/prestamista/prestamista.component';
+import { NewPrestatarioComponent } from './components/new-prestatario/new-prestatario.component';
 
 
 
@@ -38,6 +40,8 @@ import { JefeprestamistaComponent } from './components/jefeprestamista/jefeprest
     SignUpFormComponent,
     DashboardRigthComponent,
     JefeprestamistaComponent,
+    PrestamistaComponent,
+    NewPrestatarioComponent,
     
   ],
   imports: [
@@ -55,6 +59,10 @@ import { JefeprestamistaComponent } from './components/jefeprestamista/jefeprest
         { path: '', component: EmptyComponent },
         { path: 'dashboard-rigth', component: DashboardRigthComponent },
         { path: 'sign-up-form', component: SignUpFormComponent }
+      ]},
+      {path:'prestamista',component:PrestamistaComponent, children: [
+        { path: '', component: EmptyComponent },
+        { path: 'newPrestatario', component: NewPrestatarioComponent }
       ]},
       {path:'jefeprestamista',component:JefeprestamistaComponent, children: [
         { path: '', component: EmptyComponent },

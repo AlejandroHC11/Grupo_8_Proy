@@ -1,5 +1,5 @@
 .outer{
-    height: 100vh;
+    height: 120vh;
     background-color: black;
 }
 
@@ -29,7 +29,11 @@ a:hover{
 .btn{
     margin-top: 20px;
     border-radius: 15px;
-    border: 2px solid #000000;   
+    border: 2px solid #000000;
+
+    
+
+    
 }
 
 .panel{
@@ -46,6 +50,7 @@ a:hover{
     cursor: pointer;
     border: 1px solid #ddd;
     color: black;
+    width: 100%;
 }
 
 .input-field.error{ 

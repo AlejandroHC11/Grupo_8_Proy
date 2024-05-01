@@ -1,0 +1,40 @@
+
+<div id="main-container">
+    <form>
+        <div class="field-container">
+          <label id="label1" for="firstName">Nombre:</label>
+          <input type="text" [(ngModel)]="firstName" id="firstName" name="firstName">
+        </div>
+        <div class="field-container">
+          <label id="label2" for="lastName">Apellido:</label>
+          <input type="text" [(ngModel)]="lastName" id="lastName" name="lastName">
+        </div>
+        <div class="field-container">
+          <label id="label3" for="dni">Dni:</label>
+          <input type="text" [(ngModel)]="dni" id="dni" name="dni">
+        </div>
+        <div class="field-container">
+          <label id="label4" for="username">Nombre de usuario:</label>
+          <input type="text" [(ngModel)]="username" id="username" name="username">
+        </div>
+        <div class="field-container">
+          <label id="label5" for="password">Password:</label>
+          <input type="text" [(ngModel)]="password" id="upassword" name="password">
+        </div>
+        <div class="field-container">
+          <label id="label6" for="email">Email:</label>
+          <input type="text" [(ngModel)]="email" id="email" name="email">
+        </div>
+        <div class="field-container">
+          <label id="label7" for="sede">Sede:</label>
+          <select id="sede" [(ngModel)]="sede" name="sede">
+            <option value="Lima Norte">Lima Norte</option>
+            <option value="Lima Centro">Lima Centro</option>
+            <option value="Lima Centro">Sur</option>
+            <option value="Lima Este">Lima Este</option>
+          </select>
+        </div>
+        
+        <button id="button" (click)="getData()" type="submit">Generar solicitud</button>
+      </form>
+</div>

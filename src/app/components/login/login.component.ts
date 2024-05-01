@@ -50,14 +50,16 @@ export class LoginComponent implements OnInit {
           console.log(res.message);
           this.loginForm.reset();
           this.auth.storeToken(res.token);
+          this.auth.storeIdUser(res.usuario.id);
           const tokernPayload = this.auth.decodedToker();
           this.userStore.setFullNameForStore(tokernPayload.name);
           this.userStore.setRoleForStore(tokernPayload.role);
+
           this.toastr.success("SUCCESS",'Bienvenido')
           this.router.navigate(['dashboard'])
         },
         error:(err)=>{
-        this.toastr.success("ERROR",'Acces Denied');
+        this.toastr.error("ERROR",'Acces Denied');
           console.log(err);
         }
       });

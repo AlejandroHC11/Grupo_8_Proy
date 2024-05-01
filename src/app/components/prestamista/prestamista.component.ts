@@ -4,11 +4,12 @@ import { AuthService } from 'src/app/services/services/auth.service';
 import { UserStoreService } from 'src/app/services/user-store.service';
 
 @Component({
-  selector: 'app-jefeprestamista',
-  templateUrl: './jefeprestamista.component.html',
-  styleUrls: ['./jefeprestamista.component.css']
+  selector: 'app-prestamista',
+  templateUrl: './prestamista.component.html',
+  styleUrls: ['./prestamista.component.css']
 })
-export class JefeprestamistaComponent implements OnInit {
+export class PrestamistaComponent implements OnInit {
+
   public users:any = [];
   public role!:string;
   public fullName :  string = "";

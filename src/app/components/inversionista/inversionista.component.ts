@@ -10,6 +10,7 @@ import { UserStoreService } from 'src/app/services/user-store.service';
 })
 export class InversionistaComponent implements OnInit{
 
+  public mostrarDiv = false;
   public users:any = [];
   public role!:string;
   public fullName :  string = "";
@@ -32,11 +33,8 @@ export class InversionistaComponent implements OnInit{
     const roleFromToken = this.auth.getRolFromToker();
     this.role = val || roleFromToken;
    })
-   this.userStore.getIdFromStore()
-   .subscribe(val => {
-    const primaryidFromToken = this.auth.getIdFromToker();
-    this.primarysid = val || primaryidFromToken;
-   })
+   const primarysid = this.auth.getIdFromLocalStorage()
+ 
 }
   Logout(){
     this.auth.signOut();

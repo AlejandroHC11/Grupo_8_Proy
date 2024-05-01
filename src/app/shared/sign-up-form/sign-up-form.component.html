@@ -2,6 +2,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom">
         <div class="container-fluid">
             <a class="navbar-brand" href="javascript:void(0);">Hola, {{fullName}} - {{roleMostrar}} - {{primarySid}}</a>
+            <!-- <div *ngIf="mostrarDiv">oculto {{primarySid}} </div> -->
             <!-- Aquí puedes añadir un botón para colapsar la sidebar si lo necesitas -->
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -49,22 +50,32 @@
             </div>
         </div>                        
         <small *ngIf="signUpFormComponent.controls['email'].dirty && signUpFormComponent.hasError('required','email')" class="text-danger">*Email is required </small>
-        <div class="form-group pt-3">
+        <!-- <div class="form-group pt-3">
             <span class="fa fa-user p-2"></span>
              <select formControlName="role" id="role">
-
-                <option *ngIf="roleMostrar === 'Inversionista'" value="Inversionista">Inversionista</option>
-                <option *ngIf="roleMostrar === 'Inversionista' "  value="JefePrestamista">Jefe Prestamista</option>
-                <option *ngIf="roleMostrar === 'Inversionista' || 'JefePrestamista'" value="Prestamista">Prestamista</option>
-                <option value="Prestatario">Prestatario</option>
+                <option  value="Inversionista">Inversionista</option>
+                <option  value="JefePrestamista">Jefe Prestamista</option>
+                <option  value="Prestamista">Prestamista</option>
+                <option  value="Prestatario">Prestatario</option>
             </select> 
-        </div> 
+        </div>  -->
+            <div class="form-group pt-3">
+                <span class="fa fa-user p-2"></span>
+                <select formControlName="role" id="role">
+                <ng-container *ngFor="let opcion of opcionesDeRoles">
+                    <option *ngIf="opcion.mostrar" [value]="opcion.valor">{{ opcion.valor }}</option>
+                </ng-container>
+                </select>
+            </div>
+
         <div class="form-group pt-3">
-            <span class="fa fa-user p-2"></span>
+            <span class="fa fa-user p-2"></span>            
              <select formControlName="sede" id="sede">
-                <option value="LimaNorte">Lima Norte</option>
-                <option value="LimaSur">Lima Sur</option>
-                <option value="LimaCentro">Lima Centro</option>
+                <option disabled value="" selected>Seleccione su Sede</option>
+                <option value="Lima Norte">Lima Norte</option>
+                <option value="Lima Sur">Lima Sur</option>
+                <option value="Lima Centro">Lima Centro</option>
+                <option value="Lima Este">Lima Este</option>
             </select> 
         </div>
         

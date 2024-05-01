@@ -33,6 +33,16 @@ export class AuthService {
   storeToken (tokenValue: string) {
     localStorage.setItem('token', tokenValue)
   }
+  // NUEVA FORMA DE LLAMAR EL ID Y EL NOMBRE
+  storeIdUser (id: any) {
+    localStorage.setItem('idUser', id)
+  }
+ storeNameUser (nombre: string) {
+  localStorage.setItem('nombre', nombre)
+  }
+  //
+
+
   getToken(){
     return localStorage.getItem('token')
   }
@@ -52,14 +62,16 @@ export class AuthService {
     if(this.userPayload)
       return this.userPayload.name;
   }
-  getIdFromToker(){
-    if(this.userPayload)
-      return this.userPayload.primarysid;
-  }
-
   getRolFromToker(){
     if(this.userPayload)
       return this.userPayload.role;
+  }
+  //metodo que obtiene el IdUser del Local Storage
+  getIdFromLocalStorage(){
+    return localStorage.getItem('idUser')
+  }
+  getNameFromLocalStorage(){
+    return localStorage.getItem('nombre')
   }
 
 }
