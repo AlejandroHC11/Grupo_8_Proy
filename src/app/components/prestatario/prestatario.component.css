@@ -8,6 +8,17 @@
     background-color: white;
     height: 100vh;
     float: right;
+    height: 100vh; 
+    
+
+    
+    /* display: flex;
+    flex-direction: column;  
+    align-items: center;     
+    justify-content: center; 
+    height: 100vh;          
+    width: 80%;               */
+    
 }
 #profile{
     width:130px;

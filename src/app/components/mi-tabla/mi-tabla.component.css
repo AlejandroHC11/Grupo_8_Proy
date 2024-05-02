@@ -1,0 +1,60 @@
+.table {
+    width: 100%;
+    border-collapse: separate; 
+    margin-top: 20px;
+    
+    
+  }
+  .table-container {
+    width: 100%; /* Ocupa todo el ancho del contenedor */
+  max-width: 960px; /* Limita el ancho máximo de la tabla */
+  padding: 20px;
+  margin: auto; /* Centra la tabla en el contenedor */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  .table-bordered {
+    border: 1px solid #dee2e6;
+  }
+  .table-bordered .selected-cell {
+    background-color: #f8d7da !important; /* Color de resalte */
+    border: 2px solid red !important; /* Borde destacado */
+  }
+  
+  .table td, .table th {
+    padding: 0.75rem;
+    
+    border-top: 1px solid #dee2e6;
+  }
+  
+  .table thead th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #dee2e6;
+  }
+ /*NAVBAR*/
+ .navbar {
+    background-color: #343a40; /* Color de fondo oscuro */
+    margin-bottom: 20px;
+    color: white; /* Color de texto blanco */
+    padding: 10px 20px; /* Espaciado interno para dar altura */
+    text-align: center; /* Centrado del texto */
+    font-size: 24px; /* Tamaño del texto */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.15); /* Sombra ligera para dar profundidad */
+  }
+  /*FORMULARIO DE REGISTRATION*/
+  .registration-form {
+    max-width: 600px;  /* Ajusta esta medida según el tamaño del recuadro amarillo */
+    margin: 40px auto;      /* Centra el formulario horizontalmente si el contenedor es más ancho */
+    padding: 20px;     /* Añade algo de espacio alrededor del contenido del formulario */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Opcional: Añade sombra para definir mejor el formulario */
+    background: white; /* Asegúrate de que el fondo sea blanco si es necesario */
+  }
+  /*SELECTED CELL CSS*/
+  .selected-cell {
+    background-color: #f8d7da; /* Color de resalte */
+    border: 2px solid red; /* Borde destacado */
+    border-top: 2px solid red; /* Especifica el borde superior si no se muestra */
+    position: relative; /* Posicionamiento relativo para asegurar la visualización del borde */
+  }
+  /*estilos para el date fecha fin*/
+  

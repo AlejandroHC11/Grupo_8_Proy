@@ -7,4 +7,9 @@ export class Prestamo {
     estado?:String
     idPrestatario?:number
     idPrestamista?:number
+    monto?: number;
+    fechaInicio?: string;
+    fechaFin?: string;
+    dias?: number;
+    pagoDiario?: number;
 }

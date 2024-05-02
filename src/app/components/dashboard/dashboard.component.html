@@ -5,11 +5,11 @@
     <div class="bg-light border-right" id="sidebar-wrapper">
         <div class="sidebar-heading">Menú Principal</div>
         <div class="list-group list-group-flush">
-            <a *ngIf="role === 'Inversionista'|| 'Admin'" href="#" routerLink="/dashboard" class="list-group-item list-group-item-action bg-light">Dashboard</a>
-            <a *ngIf="role === 'Inversionista' || 'Admin' " href="#" class="list-group-item list-group-item-action bg-light">Usuarios</a>
-            <a *ngIf="role === 'Inversionista' || 'Admin'" href="#" routerLink="/inversionista" class="list-group-item list-group-item-action bg-light">Inversionistas</a>
-            <a *ngIf="role === 'Inversionista' || 'JefePrestamista' " href="#" routerLink="/jefeprestamista" class="list-group-item list-group-item-action bg-light">Jefe Prestamista</a>
-            <a *ngIf="role === 'Inversionista' || 'JefePrestamista'||'Prestamista' " routerLink="/prestamista" href="#" class="list-group-item list-group-item-action bg-light">Prestamista</a>
+            <a *ngIf="role === 'Inversionista'|| role === 'Admin'" href="#" routerLink="/dashboard" class="list-group-item list-group-item-action bg-light">Dashboard</a>
+            <a *ngIf="role === 'Inversionista' || role === 'Admin' " href="#" class="list-group-item list-group-item-action bg-light">Usuarios</a>
+            <a *ngIf="role === 'Inversionista' || role === 'Admin'" href="#" routerLink="/inversionista" class="list-group-item list-group-item-action bg-light">Inversionistas</a>
+            <a *ngIf="role === 'Inversionista' || role === 'JefePrestamista' " href="#" routerLink="/jefeprestamista" class="list-group-item list-group-item-action bg-light">Jefe Prestamista</a>
+            <a *ngIf="role === 'Inversionista' || role === 'JefePrestamista'|| role === 'Prestamista' " routerLink="/prestamista" href="#" class="list-group-item list-group-item-action bg-light">Prestamista</a>
             <a href="#" routerLink="/prestatario" class="list-group-item list-group-item-action bg-light">Prestatario</a>
             <a href="#" (click)="Logout()" class="list-group-item list-group-item-action bg-light">Salir</a>
         </div>
@@ -28,6 +28,7 @@
                 <!-- Aquí puedes añadir tu menú de navegación si tienes más elementos -->
             </div>
         </nav>
+
        <!-- El resto de tu contenido... -->
         <div *ngIf="role === 'Inversionista' " class="container mt-4">
             <h4>Dashboard</h4>
@@ -66,6 +67,8 @@
                 </table>
             </div>
         </div>
+
+
     </div>
     <!-- /#page-content-wrapper -->
 </div>

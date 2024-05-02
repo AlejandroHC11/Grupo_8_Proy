@@ -22,6 +22,7 @@ import { DashboardRigthComponent } from './components/dashboard-rigth/dashboard-
 import { JefeprestamistaComponent } from './components/jefeprestamista/jefeprestamista.component';
 import { PrestamistaComponent } from './components/prestamista/prestamista.component';
 import { NewPrestatarioComponent } from './components/new-prestatario/new-prestatario.component';
+import { MiTablaComponent } from './components/mi-tabla/mi-tabla.component';
 
 
 
@@ -42,6 +43,7 @@ import { NewPrestatarioComponent } from './components/new-prestatario/new-presta
     JefeprestamistaComponent,
     PrestamistaComponent,
     NewPrestatarioComponent,
+    MiTablaComponent,
     
   ],
   imports: [
@@ -61,8 +63,8 @@ import { NewPrestatarioComponent } from './components/new-prestatario/new-presta
         { path: 'sign-up-form', component: SignUpFormComponent }
       ]},
       {path:'prestamista',component:PrestamistaComponent, children: [
-        { path: '', component: EmptyComponent },
-        { path: 'newPrestatario', component: NewPrestatarioComponent }
+        { path: 'dashboard-rigth', component: DashboardRigthComponent },
+        { path: 'sign-up-form', component: SignUpFormComponent }
       ]},
       {path:'jefeprestamista',component:JefeprestamistaComponent, children: [
         { path: '', component: EmptyComponent },
@@ -73,7 +75,7 @@ import { NewPrestatarioComponent } from './components/new-prestatario/new-presta
       {path:'prestatario',component:PrestatarioComponent, children: [
         { path: '', component: EmptyComponent },
         { path: 'prestamos', component: PrestamosComponent },
-        { path: 'new', component: NewComponent }
+        { path: 'mi-tabla', component: MiTablaComponent }
       ]},
       {path: '**', redirectTo: 'login', pathMatch: 'full'}
     ])
