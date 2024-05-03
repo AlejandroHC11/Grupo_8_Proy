@@ -32,12 +32,12 @@ export class NewPrestatarioComponent {
     
     this.auth.signUp(user)
     .subscribe({
-      next:(res=>{
+      next:((res: { idUser: any; })=>{
         const idUser = res.idUser;
         var prestatario: Prestatario = {'sede':this.sede,'telefono':null,'idUser':idUser}
         this.prestatarioService.createPrestatario(prestatario)
         .subscribe({
-          error:(err=>{
+          error:((err: any)=>{
             console.log("Error en crear Prestatario")
           })
         })

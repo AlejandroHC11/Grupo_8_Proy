@@ -23,6 +23,8 @@ import { JefeprestamistaComponent } from './components/jefeprestamista/jefeprest
 import { PrestamistaComponent } from './components/prestamista/prestamista.component';
 import { NewPrestatarioComponent } from './components/new-prestatario/new-prestatario.component';
 import { MiTablaComponent } from './components/mi-tabla/mi-tabla.component';
+import { SocialLoginModule, SocialAuthServiceConfig, GoogleLoginProvider } from '@abacritt/angularx-social-login';
+
 
 
 
@@ -52,7 +54,8 @@ import { MiTablaComponent } from './components/mi-tabla/mi-tabla.component';
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    BrowserModule,   
+    BrowserModule,  
+    SocialLoginModule, 
     ToastrModule.forRoot(),
     RouterModule.forRoot([
       {path:'',redirectTo:'login',pathMatch:'full'},
@@ -81,11 +84,26 @@ import { MiTablaComponent } from './components/mi-tabla/mi-tabla.component';
       {path: '**', redirectTo: 'login', pathMatch: 'full'}
     ])
   ],
-  providers: [{
-    provide: HTTP_INTERCEPTORS,
-    useClass: TokenInterceptor,
-    multi: true
-  }],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    },
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,  // True si quieres que intente un inicio de sesión automático al cargar
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider('68021170649-hg2mlmjeo7mtkgu0ui73594gjpt341io.apps.googleusercontent.com')
+          }
+        ]
+      } as SocialAuthServiceConfig
+    }
+  ],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }

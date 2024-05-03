@@ -17,19 +17,23 @@ export class DashboardComponent implements OnInit{
   constructor(private api : ApiService, private auth: AuthService, private userStore: UserStoreService) {}
 
   ngOnInit(){
+    interface UserProfile {
+      fullName: string;
+      // Añade otras propiedades necesarias
+    }
       this.api.getUsers()
-      .subscribe(res=>{
+      .subscribe((res: any)=>{
         this.users = res;
       });
 
      this.userStore.getFullNameFromStore()
-     .subscribe(val=>{
+     .subscribe((val: any) =>{
       const fullNameFromToken = this.auth.getfullNameFromToker();
       this.fullName = val || fullNameFromToken
      }) 
 
      this.userStore.getRoleFromStore()
-     .subscribe(val => {
+     .subscribe((val: any) => {
       const roleFromToken = this.auth.getRolFromToker();
       this.role = val || roleFromToken;
      })

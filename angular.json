@@ -62,10 +62,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "Grupo_8:build:production"
+              "buildTarget": "Grupo_8:build:production"
             },
             "development": {
-              "browserTarget": "Grupo_8:build:development"
+              "buildTarget": "Grupo_8:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -73,7 +73,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "Grupo_8:build"
+            "buildTarget": "Grupo_8:build"
           }
         },
         "test": {

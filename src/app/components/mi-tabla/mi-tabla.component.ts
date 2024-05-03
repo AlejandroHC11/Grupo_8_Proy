@@ -39,18 +39,18 @@ export class MiTablaComponent implements OnInit {
 
   ngOnInit(){
     this.api.getUsers()
-    .subscribe(res=>{
+    .subscribe((res: any)=>{
       this.users = res;
     });
 
    this.userStore.getFullNameFromStore()
-   .subscribe(val=>{
+   .subscribe((val: any)=>{
     const fullNameFromToken = this.auth.getfullNameFromToker();
     this.fullName = val || fullNameFromToken
    }) 
 
    this.userStore.getRoleFromStore()
-   .subscribe(val => {
+   .subscribe((val: any) => {
     const roleFromToken = this.auth.getRolFromToker();
     this.role = val || roleFromToken;
    })
@@ -75,7 +75,7 @@ export class MiTablaComponent implements OnInit {
     };
 
     this.prestamoService.createPrestamo(prestamoData).subscribe({
-      next: (response) => {
+      next: (response: any) => {
         
         this.toastr.success("Préstamo registrado",'SUCCESS')
         console.log('Préstamo registrado:', response);
@@ -93,7 +93,7 @@ export class MiTablaComponent implements OnInit {
           this.router.navigate(['dashboard'])
         },*/
       },
-      error: (error) => {
+      error: (error: any) => {
         console.error('Error al registrar el préstamo:', error);
         // Manejar el error, mostrar un mensaje, etc.
       }

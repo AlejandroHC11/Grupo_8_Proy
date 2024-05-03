@@ -18,26 +18,26 @@ export class DashboardRigthComponent implements OnInit {
 
   ngOnInit(){
     this.api.getUsers()
-    .subscribe(res=>{
+    .subscribe((res: any)=>{
       this.users = res;
     });
     this.api.getPrestamistas()
-      .subscribe(res=>{
+      .subscribe((res: any)=>{
         this.prestamistas = res;
       });
       this.api.getPrestatarios()
-      .subscribe(res=>{
+      .subscribe((res: any)=>{
         this.prestatarios = res;
       });
 
    this.userStore.getFullNameFromStore()
-   .subscribe(val=>{
+   .subscribe((val: any)=>{
     const fullNameFromToken = this.auth.getfullNameFromToker();
     this.fullName = val || fullNameFromToken
    }) 
 
    this.userStore.getRoleFromStore()
-   .subscribe(val => {
+   .subscribe((val: any) => {
     const roleFromToken = this.auth.getRolFromToker();
     this.role = val || roleFromToken;
    })

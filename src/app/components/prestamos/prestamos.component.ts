@@ -13,14 +13,14 @@ export class PrestamosComponent implements OnInit{
   prestamos:Prestamo[]=[]
   public fullName :  string = "";
   constructor(private prestamoService:PrestamoService, private auth: AuthService, private userStore: UserStoreService){
-    this.prestamoService.getPrestamos().subscribe(res=>{
+    this.prestamoService.getPrestamos().subscribe((res: Prestamo[])=>{
       this.prestamos=res
     })
   }
   ngOnInit(){
    
    this.userStore.getFullNameFromStore()
-   .subscribe(val=>{
+   .subscribe((val: any)=>{
     let fullNameFromToken = this.auth.getfullNameFromToker();
     this.fullName = val || fullNameFromToken
    }) 

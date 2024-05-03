@@ -22,7 +22,7 @@ export class NewComponent {
     }
     
     var prestamo = {'importe': this.importe, 'sede':this.sede, 'moneda':this.moneda, 'cuotas':this.cuotas, 'estado':'Pendiente'}
-    this.prestamoService.createPrestamo(prestamo).subscribe(res => {
+    this.prestamoService.createPrestamo(prestamo).subscribe((res: any) => {
       alert('Se generó la solicitud de prestamo')
     })
   }

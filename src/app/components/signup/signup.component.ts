@@ -56,7 +56,7 @@ export class SignupComponent implements OnInit {
 
       this.auth.signUp(this.signUpForm.value)
       .subscribe({
-        next:(res=>{
+        next:((res: { message: any; })=>{
           alert(res.message);
           //
           // const idUser = res.idUser;
@@ -68,7 +68,7 @@ export class SignupComponent implements OnInit {
           this.signUpForm.reset();
           this.router.navigate(['login']);
         })
-        ,error:(err=>{
+        ,error:((err: { error: { message: any; }; })=>{
           alert(err?.error.message)
           this.toastr.warning("Register Failed", 'ERROR');
         })

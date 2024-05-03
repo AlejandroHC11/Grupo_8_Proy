@@ -36,19 +36,17 @@
                     </div>
                     <div class="mx-3 my-2 py-2 bordert">
                         <div class="text-center py-3">
-                            <a href="https://www.facebook.com" target="_blank" class="px-2">
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook">
-                              </a>
-                              
+
                               <!-- Google Link -->
-                              <a href="https://www.google.com" target="_blank" class="px-2">
+                              <!-- <a href="https://www.google.com" target="_blank" class="px-2">
                                 <img src="https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-suite-everything-you-need-know-about-google-newest-0.png" alt="Google">
-                              </a>
-                              
-                              <!-- GitHub Link -->
-                              <a href="https://www.github.com" target="_blank" class="px-2">
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" alt="GitHub">
-                              </a>
+                              </a> -->
+
+                              <div id="googleSignInButton">
+                                <button (click)="signInWithGoogle()" class="btn-google-login">
+                                    <img src="https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-suite-everything-you-need-know-about-google-newest-0.png" alt="Google">
+                                </button>
+                              </div>
                         </div>
                     </div>
                 </div>
@@ -56,3 +54,5 @@
         </div>
     </div>
 </div>
+
+

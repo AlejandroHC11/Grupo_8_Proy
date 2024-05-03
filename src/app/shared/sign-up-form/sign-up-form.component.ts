@@ -50,13 +50,13 @@ export class SignUpFormComponent  implements OnInit {
      }
 
     this.userStore.getFullNameFromStore()
-    .subscribe(val=>{
+    .subscribe((val: any)=>{
      const fullNameFromToken = this.auth.getfullNameFromToker();
      this.fullName = val || fullNameFromToken
     }) 
  
     this.userStore.getRoleFromStore()
-    .subscribe(val => {
+    .subscribe((val: any) => {
      const roleFromToken = this.auth.getRolFromToker();
      this.roleMostrar = val || roleFromToken;
     })
@@ -74,7 +74,7 @@ export class SignUpFormComponent  implements OnInit {
     this.inicializarRoles();
   }
   inicializarRoles() {
-    this.userStore.getRoleFromStore().subscribe(val => {
+    this.userStore.getRoleFromStore().subscribe((val: any) => {
       const roleFromToken = this.auth.getRolFromToker();
       this.roleMostrar = val || roleFromToken;
 
@@ -98,12 +98,12 @@ export class SignUpFormComponent  implements OnInit {
 
       this.auth.signUp(this.signUpFormComponent.value)
       .subscribe({
-        next:(res=>{
+        next:((res: { message: any; })=>{
           alert(res.message);
           this.signUpFormComponent.reset();
           this.toastr.success("Registro Correcto", 'SUCESS');
         })
-        ,error:(err=>{
+        ,error:((err: { error: { message: string; }; })=>{
           const errorMessage = err?.error?.message || "Ha ocurrido un error desconocido";
           alert(errorMessage);
           console.log(err)

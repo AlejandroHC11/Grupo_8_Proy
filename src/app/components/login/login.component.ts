@@ -5,7 +5,9 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import ValidateForm from 'src/app/helpers/validateform';
 import { UserStoreService } from 'src/app/services/user-store.service';
+import { GoogleLoginProvider, SocialAuthService } from '@abacritt/angularx-social-login';
 
+declare let google: any;
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -23,15 +25,79 @@ export class LoginComponent implements OnInit {
     private auth: AuthService, 
     private router:Router,
     private toastr: ToastrService,
-    private userStore: UserStoreService
+    private userStore: UserStoreService,
+    private authService: SocialAuthService
   ) { }
-
+ 
   ngOnInit(): void {
+    this.loadGoogleAPI();
     this.loginForm = this.fb.group({
       username: ['',Validators.required],
       password: ['',Validators.required]
-    })
+    }); 
+    // google.accounts.id.initialize({
+    //   client_id: '68021170649-hg2mlmjeo7mtkgu0ui73594gjpt341io.apps.googleusercontent.com',  // Asegúrate de reemplazar 'TU_CLIENT_ID' con tu Client ID real
+    //   callback: this.onSignIn.bind(this)
+    // });
+    // google.accounts.id.renderButton(
+    //   document.getElementById('googleSignInButton'),
+    //   { theme: 'outline', size: 'large' }  // Personaliza según tus necesidades
+    // );
   }
+
+  loadGoogleAPI() {
+    const script = document.createElement('script');
+    script.src = "https://accounts.google.com/gsi/client";
+    script.async = true;
+    script.defer = true;
+    script.onload = () => this.initGoogleButton();
+    document.body.appendChild(script);
+  }
+
+  initGoogleButton() {
+    google.accounts.id.initialize({
+      client_id: '68021170649-hg2mlmjeo7mtkgu0ui73594gjpt341io.apps.googleusercontent.com',  // Asegúrate de reemplazar 'TU_CLIENT_ID' con tu Client ID real
+      callback: this.onSignIn.bind(this)
+    });
+
+    google.accounts.id.renderButton(
+      document.getElementById('googleSignInButton'),
+      { theme: 'outline', size: 'large' }  // Personaliza según tus necesidades
+    );
+  }
+
+  onSignIn(googleUser: any) {
+    console.log('Google user data:', googleUser);
+    this.router.navigate(['/dashboard']);  // Asegúrate de que la ruta es correcta según tu configuración de enrutamiento.
+
+
+  }
+
+  signInWithGoogle(): void {
+    this.authService.signIn(GoogleLoginProvider.PROVIDER_ID).then((userData) => {
+      console.log(userData);
+      this.determineUserRole(userData.email); // Suponiendo que usas el email para determinar el rol
+    }).catch((error) => {
+      console.error('Error during Google sign in:', error);
+    });
+  }
+  private determineUserRole(email: string): void {
+    // Lógica para determinar el rol basada en el email
+    // Esto es solo un ejemplo, podrías tener que hacer una petición a tu backend
+    const userRole = 'Prestatario'; // Aquí implementarías la lógica real para obtener el rol
+    localStorage.setItem('userRole', userRole); // Almacena el rol en el almacenamiento local
+    this.redirectUserBasedOnRole(userRole);
+  }
+  private redirectUserBasedOnRole(role: string): void {
+    if (role === 'prestatario') {
+      this.router.navigate(['/prestatario']);
+    } else {
+      // manejo para otros roles
+      this.router.navigate(['/login']);
+    }
+  }
+
+
   hideShowPass(){
     this.isText = !this.isText;
     this.isText ? this.eyeIcon = "fa-eye" : this.eyeIcon = "fa-solid fa-eye-slash";
@@ -46,7 +112,7 @@ export class LoginComponent implements OnInit {
       //Send the obj to databse
       this.auth.login(this.loginForm.value)
       .subscribe({
-        next:(res) =>{
+        next:(res: { message: any; token: string; usuario: { id: any; }; }) =>{
           console.log(res.message);
           this.loginForm.reset();
           this.auth.storeToken(res.token);
@@ -58,7 +124,7 @@ export class LoginComponent implements OnInit {
           this.toastr.success("SUCCESS",'Bienvenido')
           this.router.navigate(['dashboard'])
         },
-        error:(err)=>{
+        error:(err: any)=>{
         this.toastr.error("ERROR",'Acces Denied');
           console.log(err);
         }
