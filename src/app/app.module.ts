@@ -27,6 +27,7 @@ import { MiTablaComponent } from './components/mi-tabla/mi-tabla.component';
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,

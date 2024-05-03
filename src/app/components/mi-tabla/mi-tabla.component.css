@@ -56,5 +56,18 @@
     border-top: 2px solid red; /* Especifica el borde superior si no se muestra */
     position: relative; /* Posicionamiento relativo para asegurar la visualización del borde */
   }
-  /*estilos para el date fecha fin*/
+  /*estilos para el nav bar*/
+  .sidebar-heading {
+    padding: 0.875rem 1.25rem;
+    font-size: 1.2em;
+    background: #000000;
+    color: white;
+  }
+  #sidebar-wrapper {
+    min-width: 250px;
+    max-width: 250px;
+    height: 100vh;
+    background: #f8f9fa;
+    border-right: 1px solid #ddd;
+}
   

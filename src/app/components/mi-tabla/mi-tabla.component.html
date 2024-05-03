@@ -1,7 +1,12 @@
 
-<div class="navbar">
-    <div class="navbar-title">Detalle del Préstamo</div>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom">
+  <div class="container-fluid">
+      <a class="navbar-brand" href="javascript:void(0);">   Hola, {{fullName}},  Bienvenido a tu  Solicitud de Prestamo </a>
+      <!-- Aquí puedes añadir un botón para colapsar la sidebar si lo necesitas -->
+      
+      <!-- Aquí puedes añadir tu menú de navegación si tienes más elementos -->
   </div>
+</nav>
 <div class="table-container">
 <table class="table table-bordered">
     <thead>
@@ -56,6 +61,6 @@
         <label for="pagoDiario">Pago Diario</label>
         <input type="text" class="form-control" id="pagoDiario" name="pagoDiario" [(ngModel)]="dailyPayment" readonly>
       </div>
-      <button type="submit"  class="btn btn-primary" (click)="onRegistrar()">Registrar</button>
+      <button *ngIf="role === 'Prestatario'" type="submit"  class="btn btn-dark btn-block mt-4 w-100" (click)="onRegistrar()">Registrar Solicitud</button>
     </form>
   </div>

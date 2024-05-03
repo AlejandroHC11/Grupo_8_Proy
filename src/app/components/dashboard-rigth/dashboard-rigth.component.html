@@ -7,9 +7,9 @@
                 <div class="container-fluid">
                     <a class="navbar-brand" href="javascript:void(0);">Hola, {{fullName}} - {{role}}</a>
                     <!-- Aquí puedes añadir un botón para colapsar la sidebar si lo necesitas -->
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                    <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
-                    </button>
+                    </button> -->
                     <!-- Aquí puedes añadir tu menú de navegación si tienes más elementos -->
                 </div>
             </nav>
@@ -31,7 +31,7 @@
                             <div>
                                 
                             </div>
-                            <tbody *ngIf="role === 'Inversionista'">                                
+                            <tbody *ngIf="role === 'Inversionista' || role === 'Admin'">                                
                                 <tr *ngFor="let user of users; let i = index">
                                     <td>{{i + 1}}</td>
                                     <td>{{user.firstName}}</td>

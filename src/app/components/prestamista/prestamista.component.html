@@ -1,12 +1,12 @@
 <div id="left-container" class="col-lg-3">
     <div id="user-profile">
         <img id="profile" src="assets/img/profile.png" alt="Profile">
-        <h5 id="name">Hola, {{fullName}} - {{role}} - {{primarysid}}</h5>
+        <h5 id="name">Hola, {{fullName}} - {{role}}</h5>
     </div>
     <button class="button" [routerLink]="['/dashboard']">Principal</button>
     <button class="button" [routerLink]="['/prestamista/dashboard-rigth']">Dashboard</button> 
-    <button class="button" [routerLink]="['/prestamista/sign-up-form']">Nuevo Prestatario</button>
-    <button class="button" [routerLink]="['/']">Aprobar préstamos solicitados</button> 
+    <button *ngIf="role === 'Prestamista'" class="button" [routerLink]="['/prestamista/sign-up-form']">Nuevo Prestatario</button>
+    <button *ngIf="role === 'Prestamista'" class="button" [routerLink]="['/']">Aprobar préstamos solicitados</button> 
     <button type="submit" class="button" (click)="Logout()">Salir</button> 
 </div>
 <div id="right-container" class="col-lg-9">
