@@ -15,6 +15,10 @@ export class PrestamoService {
     return this.httpClient.get<Prestamo[]>(this.url + "GetPrestamo")
   }
 
+  getPrestamoByIdPrestatario(idPrestatario: number):Observable<Prestamo[]>{
+    return this.httpClient.get<Prestamo[]>(this.url + "getPrestamoByIdPrestatario?idPrestatario="+idPrestatario)
+  }
+
   createPrestamo(prestamo: Prestamo): Observable<Prestamo> {
     return this.httpClient.post<Prestamo>(this.url + "CrearPrestamo", prestamo);
   }
