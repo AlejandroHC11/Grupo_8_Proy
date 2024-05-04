@@ -97,3 +97,9 @@ img{
     background-color: #fff;
     padding: 0 8px;
 }
+.input-combo{
+    width: 460px;
+    height: 45px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+}

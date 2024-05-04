@@ -5,12 +5,11 @@
     <div class="bg-light border-right" id="sidebar-wrapper">
         <div class="sidebar-heading">Menú Principal</div>
         <div class="list-group list-group-flush">
-            <a *ngIf="role === 'Inversionista'|| role === 'Admin'" href="#" routerLink="/dashboard" class="list-group-item list-group-item-action bg-light">Dashboard</a>
-            <a *ngIf="role === 'Inversionista' || role === 'Admin' " href="#" class="list-group-item list-group-item-action bg-light">Admin</a>
-            <a *ngIf="role === 'Inversionista' || role === 'Admin'" href="#" routerLink="/inversionista" class="list-group-item list-group-item-action bg-light">Inversionistas</a>
-            <a *ngIf="role === 'Admin' || role === 'Inversionista' || role === 'JefePrestamista' " href="#" routerLink="/jefeprestamista" class="list-group-item list-group-item-action bg-light">Jefe Prestamista</a>
-            <a *ngIf="role === 'Admin' || role === 'Inversionista' || role === 'JefePrestamista'|| role === 'Prestamista' " routerLink="/prestamista" href="#" class="list-group-item list-group-item-action bg-light">Prestamista</a>
-            <a href="#" routerLink="/prestatario" class="list-group-item list-group-item-action bg-light">Prestatario</a>
+            <a *ngIf="role === 'Admin'" href="#" routerLink="/user" class="list-group-item list-group-item-action bg-light">Usuario</a>
+            <a *ngIf="role === 'Inversionista'" href="#" routerLink="/jefeprestamista" class="list-group-item list-group-item-action bg-light">Jefe Prestamista</a>
+            <a *ngIf="role === 'Jefe Prestamista'" href="#" routerLink="/prestamista" class="list-group-item list-group-item-action bg-light">Prestamista</a>
+            <a *ngIf="role === 'Prestamista'" routerLink="/prestatario" href="#" class="list-group-item list-group-item-action bg-light">Prestatario</a>
+            <a *ngIf="role === 'Prestatario' || role === 'Admin'" href="#" routerLink="/prestamo" class="list-group-item list-group-item-action bg-light">Prestamo</a>
             <a href="#" (click)="Logout()" class="list-group-item list-group-item-action bg-light">Salir</a>
         </div>
     </div>
@@ -22,13 +21,12 @@
             <div class="container-fluid">
                 <a class="navbar-brand" href="javascript:void(0);">Hola, {{fullName}} - {{role}}</a>
                 <!-- Aquí puedes añadir un botón para colapsar la sidebar si lo necesitas -->
-                <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
-                </button> -->
+                </button>
                 <!-- Aquí puedes añadir tu menú de navegación si tienes más elementos -->
             </div>
         </nav>
-
        <!-- El resto de tu contenido... -->
         <div *ngIf="role === 'Inversionista' || role === 'Admin'" class="container mt-4">
             <h4>Dashboard</h4>
@@ -59,16 +57,16 @@
                                 (click)="editUser(user)"
                                 (click)="deleteUser(user)"
                                 -->
+                                <!--
                                 <button type="button" class="btn btn-primary btn-sm" (click)="editUser(user)">Editar</button>
                                 <button type="button" class="btn btn-danger btn-sm" (click)="deleteUser(user)">Eliminar</button>
+                                -->
                             </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
         </div>
-
-
     </div>
     <!-- /#page-content-wrapper -->
 </div>

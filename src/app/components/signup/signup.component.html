@@ -37,16 +37,12 @@
                             </div>
                             <small *ngIf="signUpForm.controls['direccion'].dirty && signUpForm.hasError('required','direccion')" class="text-danger">*Adress empty</small>
                             <div class="form-group pt-3">
-                                <span class="fa fa-user p-2"></span>
-                                 <select formControlName="sede" id="sede">
-                                    <option disabled value="" selected>Seleccione su Sede</option>
-                                    <option value="Lima Norte">Lima Norte</option>
-                                    <option value="Lima Sur">Lima Sur</option>
-                                    <option value="Lima Centro">Lima Centro</option>
-                                    <option value="Lima Este">Lima Este</option>
+                                <select formControlName="idSede" id="idSede" class="input-combo">
+                                  <option disabled value="" selected>Seleccione su Sede</option>
+                                  <option *ngFor="let sede of sedes" [value]="sede.idSede">{{ sede.descripcionSede }}</option>
                                 </select> 
-                            </div>
-                            <small *ngIf="signUpForm.controls['sede'].dirty && signUpForm.hasError('required','sede')" class="text-danger">*Sede is required </small>
+                              </div>
+                            <small *ngIf="signUpForm.controls['idSede'].dirty && signUpForm.hasError('required','idSede')" class="text-danger">*Sede is required </small>
 
                             <div class="form-group pt-3">
                                 <div class="input-field" [class.error]="signUpForm.controls['email'].dirty && signUpForm.hasError('required','email')">

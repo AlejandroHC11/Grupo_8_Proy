@@ -1,5 +1,5 @@
 .outer{
-    height: 120vh;
+    height: 170vh;
     background-color: black;
 }
 
@@ -90,4 +90,11 @@ img{
     left: 36%;
     background-color: #fff;
     padding: 0 8px;
+}
+
+.input-combo{
+    width: 418px;
+    height: 45px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
 }

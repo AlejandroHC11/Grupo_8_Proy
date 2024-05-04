@@ -1,28 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from 'src/app/services/services/api.service';
 import { AuthService } from 'src/app/services/services/auth.service';
 import { UserStoreService } from 'src/app/services/user-store.service';
 
 @Component({
-  selector: 'app-jefeprestamista',
-  templateUrl: './jefeprestamista.component.html',
-  styleUrls: ['./jefeprestamista.component.css']
+  selector: 'app-prestamo',
+  templateUrl: './prestamo.component.html',
+  styleUrls: ['./prestamo.component.css']
 })
-export class JefeprestamistaComponent implements OnInit{
-
-  public mostrarDiv = false;
-  public users:any = [];
+export class PrestamoComponent implements OnInit {
   public role!:string;
   public fullName :  string = "";
   public creatorUser :  string = "";
-  constructor(private api : ApiService,private auth: AuthService ,private userStore: UserStoreService) {}
-  ngOnInit(){
-    this.api.getUsers()
-    .subscribe(res=>{
-      this.users = res;
-    });
-
-   this.userStore.getFullNameFromStore()
+  constructor(private userStore: UserStoreService, private auth: AuthService){}
+  ngOnInit(): void {
+    this.userStore.getFullNameFromStore()
    .subscribe(val=>{
     const fullNameFromToken = this.auth.getfullNameFromToker();
     this.fullName = val || fullNameFromToken
@@ -33,17 +24,15 @@ export class JefeprestamistaComponent implements OnInit{
     const roleFromToken = this.auth.getRolFromToker();
     this.role = val || roleFromToken;
    })
-   const primarysid = this.auth.getIdFromLocalStorage()
 
    // Cargar el idUser desde el LocalStorage y asignarlo al formulario
   const idUser = this.userStore.getIdUserFromStore();
   if (idUser) {
       this.creatorUser = idUser;
   }
- 
-}
+  }
+  
   Logout(){
     this.auth.signOut();
   }
-
 }

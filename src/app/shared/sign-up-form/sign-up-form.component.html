@@ -1,15 +1,4 @@
 <div class="form-container">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="javascript:void(0);">Hola, {{fullName}} - {{roleMostrar}}</a>
-            <!-- <div *ngIf="mostrarDiv">oculto {{primarySid}} </div> -->
-            <!-- Aquí puedes añadir un botón para colapsar la sidebar si lo necesitas -->
-            <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button> -->
-            <!-- Aquí puedes añadir tu menú de navegación si tienes más elementos -->
-        </div>
-    </nav>
     <form [formGroup]="signUpFormComponent">
 
         <div class="form-group pt-3">
@@ -50,34 +39,25 @@
             </div>
         </div>                        
         <small *ngIf="signUpFormComponent.controls['email'].dirty && signUpFormComponent.hasError('required','email')" class="text-danger">*Email is required </small>
-        <!-- <div class="form-group pt-3">
-            <span class="fa fa-user p-2"></span>
-             <select formControlName="role" id="role">
-                <option  value="Inversionista">Inversionista</option>
-                <option  value="JefePrestamista">Jefe Prestamista</option>
-                <option  value="Prestamista">Prestamista</option>
-                <option  value="Prestatario">Prestatario</option>
-            </select> 
-        </div>  -->
-            <div class="form-group pt-3">
-                <span class="fa fa-user p-2"></span>
-                <select formControlName="role" id="role">
-                <ng-container *ngFor="let opcion of opcionesDeRoles">
-                    <option *ngIf="opcion.mostrar" [value]="opcion.valor">{{ opcion.valor }}</option>
-                </ng-container>
-                </select>
-            </div>
 
-        <div class="form-group pt-3">
-            <span class="fa fa-user p-2"></span>            
-             <select formControlName="sede" id="sede">
-                <option disabled value="" selected>Seleccione su Sede</option>
-                <option value="Lima Norte">Lima Norte</option>
-                <option value="Lima Sur">Lima Sur</option>
-                <option value="Lima Centro">Lima Centro</option>
-                <option value="Lima Este">Lima Este</option>
+        <div class="form-group pt-3" *ngIf="roleMostrar === 'Admin'">           
+            <select class="input-combo" formControlName="role" (change)="onRoleSelected()">
+                <option disabled value="" selected>Seleccione su rol</option>
+                <option value="Inversionista">Inversionista</option>
+                <option value="Jefe Prestamista">Jefe Prestamista</option>
+                <option value="Prestamista">Prestamista</option>
+                <option value="Prestatario">Prestatario</option>
             </select> 
         </div>
+        <small *ngIf="signUpFormComponent.controls['role'].dirty && signUpFormComponent.hasError('required', 'role')" class="text-danger">*Role is required</small>
+
+        <div class="form-group pt-3">           
+            <select class="input-combo" [class.error]="signUpFormComponent.controls['idSede'].dirty && signUpFormComponent.hasError('required','idSede')" formControlName="idSede" id="idSede">
+                <option disabled value="" selected>Seleccione su Sede</option>
+                <option *ngFor="let sede of sedes" [value]="sede.idSede">{{ sede.descripcionSede }}</option>
+            </select> 
+        </div>
+        <small *ngIf="signUpFormComponent.controls['idSede'].dirty && signUpFormComponent.hasError('required','idSede')" class="text-danger">*Sede is required</small>
         
         <div class="form-group pt-3">
             <div class="input-field" [class.error]="signUpFormComponent.controls['userName'].dirty && signUpFormComponent.hasError('required','userName')">

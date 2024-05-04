@@ -5,12 +5,12 @@
 #left-container{
     background-color: black;
     text-align: center;
-    height: 100vh;
+    height: 150vh;
     float: left;
 }
 #right-container{
     background-color: white;
-    height: 100vh;
+    height: 130vh;
     float: right;
 }
 /*titulo left cotainet*/
@@ -22,4 +22,11 @@
     background-color: #ffffff;
     border-radius: 20px;
     font-weight: 500;
+}
+#profile{
+    width:130px;
+    margin: 20px;
+}
+#user-profile{
+    margin: 20px;
 }

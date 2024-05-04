@@ -1,5 +1,5 @@
 .outer{
-    height: 100vh;
+    height: 110vh;
     background-color: black;
 }
 
@@ -90,6 +90,3 @@ img{
     background-color: #fff;
     padding: 0 8px;
 }
-
-/*boton de login */
-

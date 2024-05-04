@@ -1,35 +1,20 @@
+/*titulo left cotainet*/
+#name{
+    color: white;
+}
 #left-container{
     background-color: black;
     text-align: center;
-    height: 100vh;
+    height: 150vh;
     float: left;
 }
 #right-container{
     background-color: white;
     height: 100vh;
     float: right;
-    height: 100vh; 
-    
-
-    
-    /* display: flex;
-    flex-direction: column;  
-    align-items: center;     
-    justify-content: center; 
-    height: 100vh;          
-    width: 80%;               */
-    
 }
-#profile{
-    width:130px;
-    margin: 20px;
-}
-#name{
-    color: white;
-}
-#user-profile{
-    margin: 50px;
-}
+/*titulo left cotainet*/
+/*Buttons*/
 .button{
     margin: 20px 30px 20px 30px;
     width: 200px;
@@ -37,4 +22,11 @@
     background-color: #ffffff;
     border-radius: 20px;
     font-weight: 500;
+}
+#profile{
+    width:130px;
+    margin: 20px;
+}
+#user-profile{
+    margin: 20px;
 }

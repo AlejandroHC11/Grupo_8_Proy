@@ -14,4 +14,12 @@ export class PrestatarioService {
   createPrestatario(prestatario: Prestatario): Observable<Prestatario> {
     return this.httpClient.post<Prestatario>(this.url + "CrearPrestatario", prestatario);
   }
+
+  getPrestatarios() {
+    return this.httpClient.get<any>(this.url+"GetPrestatario");
+  }
+
+  getPrestatarioByCreatorUser(creatorUser: string) {
+    return this.httpClient.get<any>(this.url+"getPrestatarioByCreatorUser?creatorUser="+creatorUser);
+  }
 }

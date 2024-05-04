@@ -6,8 +6,6 @@ import { Injectable } from '@angular/core';
 })
 export class ApiService {
   private baseUrlUser: string = "https://localhost:7219/api/User/"
-  private baseUrlJefePrestamista: string = "https://localhost:7219/api/JefePrestamista/"
-  private baseUrlPrestamista: string = "https://localhost:7219/api/Prestamista/"
 
 
 
@@ -16,12 +14,8 @@ export class ApiService {
   getUsers() {
     return this.http.get<any>(this.baseUrlUser);
   }
-  getPrestamistas() {
-    return this.http.get<any>(this.baseUrlJefePrestamista);
+  getUserById(userId: number) {
+    return this.http.get<any>(this.baseUrlUser+"getUserById?clienteId="+userId);
   }
-  getPrestatarios() {
-    return this.http.get<any>(this.baseUrlPrestamista);
-  }
-  
 
 }

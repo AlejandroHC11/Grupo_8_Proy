@@ -28,21 +28,13 @@ export class LoginComponent implements OnInit {
     private userStore: UserStoreService,
     private authService: SocialAuthService
   ) { }
- 
+
   ngOnInit(): void {
     this.loadGoogleAPI();
     this.loginForm = this.fb.group({
       username: ['',Validators.required],
       password: ['',Validators.required]
-    }); 
-    // google.accounts.id.initialize({
-    //   client_id: '68021170649-hg2mlmjeo7mtkgu0ui73594gjpt341io.apps.googleusercontent.com',  // Asegúrate de reemplazar 'TU_CLIENT_ID' con tu Client ID real
-    //   callback: this.onSignIn.bind(this)
-    // });
-    // google.accounts.id.renderButton(
-    //   document.getElementById('googleSignInButton'),
-    //   { theme: 'outline', size: 'large' }  // Personaliza según tus necesidades
-    // );
+    })
   }
 
   loadGoogleAPI() {
@@ -89,14 +81,13 @@ export class LoginComponent implements OnInit {
     this.redirectUserBasedOnRole(userRole);
   }
   private redirectUserBasedOnRole(role: string): void {
-    if (role === 'prestatario') {
-      this.router.navigate(['/prestatario']);
+    if (role === 'Prestatario') {
+      this.router.navigate(['/prestamo/']);
     } else {
       // manejo para otros roles
       this.router.navigate(['/login']);
     }
   }
-
 
   hideShowPass(){
     this.isText = !this.isText;
@@ -112,7 +103,7 @@ export class LoginComponent implements OnInit {
       //Send the obj to databse
       this.auth.login(this.loginForm.value)
       .subscribe({
-        next:(res: { message: any; token: string; usuario: { id: any; }; }) =>{
+        next:(res) =>{
           console.log(res.message);
           this.loginForm.reset();
           this.auth.storeToken(res.token);
@@ -124,8 +115,8 @@ export class LoginComponent implements OnInit {
           this.toastr.success("SUCCESS",'Bienvenido')
           this.router.navigate(['dashboard'])
         },
-        error:(err: any)=>{
-        this.toastr.error("ERROR",'Acces Denied');
+        error:(err)=>{
+        this.toastr.error("ERROR",'Access Denied');
           console.log(err);
         }
       });

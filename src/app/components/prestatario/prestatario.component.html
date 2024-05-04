@@ -1,14 +1,13 @@
-
-
 <div id="left-container" class="col-lg-3">
     <div id="user-profile">
         <img id="profile" src="assets/img/profile.png" alt="Profile">
-        <h5 id="name">Hola, {{fullName}} - {{role}}</h5>
+        <h5 id="name">Hola, {{fullName}} - {{role}} - {{creatorUser}}</h5>
     </div>
-    <button class="button" [routerLink]="['/dashboard']">Principal</button> 
-    <button class="button" [routerLink]="['/prestatario/mi-tabla']">Nueva Solicitud</button>
-    <button class="button" [routerLink]="['/prestatario/prestamos']">Ver estado de préstamo</button>
-    <button type="submit" class="button" (click)="Logout()">Salir</button>  
+    <button class="button" [routerLink]="['/dashboard']">Menu Principal</button> 
+    <button class="button" [routerLink]="['/prestatario/dashboard-rigth']">Prestatarios</button> 
+    <button class="button" [routerLink]="['/prestatario/sign-up-form']">Nuevo Prestatario</button>
+    <button type="submit" class="button" (click)="Logout()">Salir</button>
+   
 </div>
 <div id="right-container" class="col-lg-9">
     <router-outlet></router-outlet>  

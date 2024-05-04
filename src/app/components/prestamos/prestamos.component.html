@@ -13,21 +13,23 @@
         <thead>
             <tr>
                 <th>Nro. Prestamo</th>
-                <th>Importe</th>
-                <th>Sede</th>
-                <th>Moneda</th>
-                <th>Cuotas</th>
+                <th>Monto</th>
+                <th>Pago Diario</th>
+                <th>Dias Duracion</th>
                 <th>Estado</th>
+                <th>Fecha Inicio</th>
+                <th>Fecha Fin</th>
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let prestamo of prestamos">
                 <td>{{ prestamo.nroPrestamo }}</td>
-                <td>{{ prestamo.importe }}</td>
-                <td>{{ prestamo.sede }}</td>
-                <td>{{ prestamo.moneda }}</td>
-                <td>{{ prestamo.cuotas }}</td>
+                <td>{{ prestamo.monto}}</td>
+                <td>{{ prestamo.pagoDiario }}</td>
+                <td>{{ prestamo.diasDuracion }}</td>
                 <td>{{ prestamo.estado }}</td>
+                <td>{{ prestamo.fechaIniVigencia }}</td>
+                <td>{{ prestamo.fechaFinVigencia }}</td>
             </tr>
         </tbody>
     </table>

@@ -1,15 +1,11 @@
 export class Prestamo {
     nroPrestamo?:number
-    importe?: number
-    sede?: String
-    moneda?: String
-    cuotas?: number
-    estado?:String
+    monto?: number;
+    pagoDiario?: number;
+    diasDuracion?: number;
+    estado?:String   
+    fechaIniVigencia?: string;
+    fechaFinVigencia?: string;
     idPrestatario?:number
     idPrestamista?:number
-    monto?: number;
-    fechaInicio?: string;
-    fechaFin?: string;
-    dias?: number;
-    pagoDiario?: number;
 }
