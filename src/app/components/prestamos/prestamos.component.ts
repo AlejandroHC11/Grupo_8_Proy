@@ -12,10 +12,8 @@ import { UserStoreService } from 'src/app/services/user-store.service';
 export class PrestamosComponent implements OnInit{
   prestamos:Prestamo[]=[]
   public fullName :  string = "";
+  public creatorUser :  string = "";
   constructor(private prestamoService:PrestamoService, private auth: AuthService, private userStore: UserStoreService){
-    this.prestamoService.getPrestamos().subscribe(res=>{
-      this.prestamos=res
-    })
   }
   ngOnInit(){
    
@@ -24,5 +22,14 @@ export class PrestamosComponent implements OnInit{
     let fullNameFromToken = this.auth.getfullNameFromToker();
     this.fullName = val || fullNameFromToken
    }) 
+   // Cargar el idUser desde el LocalStorage y asignarlo al formulario
+  const idUser = this.userStore.getIdUserFromStore();
+  if (idUser) {
+      this.creatorUser = idUser;
+  }
+
+   this.prestamoService.getPrestamoByIdPrestatario(parseInt(this.creatorUser)).subscribe(res=>{
+    this.prestamos=res
+  })
 }
 }

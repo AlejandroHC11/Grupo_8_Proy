@@ -20,15 +20,15 @@
         </tr>
       </thead>
       <tbody>
-          <tr *ngFor="let row of data; let i = index">
-            <td>{{row.duration}}</td>
-            <td [ngClass]="{'selected-cell': selectedCell.row === i && selectedCell.column === 1}" (click)="onCellClick(i, 1, row.duration, row.value150)">{{row.value150}}</td>
-            <td [ngClass]="{'selected-cell': selectedCell.row === i && selectedCell.column === 2}" (click)="onCellClick(i, 2, row.duration, row.value200)">{{row.value200}}</td>
-            <td [ngClass]="{'selected-cell': selectedCell.row === i && selectedCell.column === 3}" (click)="onCellClick(i, 3, row.duration, row.value300)">{{row.value300}}</td>
-            <td [ngClass]="{'selected-cell': selectedCell.row === i && selectedCell.column === 4}" (click)="onCellClick(i, 4, row.duration, row.value400)">{{row.value400}}</td>
-            <td [ngClass]="{'selected-cell': selectedCell.row === i && selectedCell.column === 5}" (click)="onCellClick(i, 5, row.duration, row.value500)">{{row.value500}}</td>
-          </tr>
-        </tbody>
+        <tr *ngFor="let row of data; let i = index">
+          <td>{{row.duracionDias}}</td> <!-- Cambiado para coincidir con el dato correcto -->
+          <td [ngClass]="{'selected-cell': selectedCell.row === i && selectedCell.column === 1}" (click)="onCellClick(i, 1, row.duracionDias, row.precio150)">{{row.precio150}}</td>
+          <td [ngClass]="{'selected-cell': selectedCell.row === i && selectedCell.column === 2}" (click)="onCellClick(i, 2, row.duracionDias, row.precio200)">{{row.precio200}}</td>
+          <td [ngClass]="{'selected-cell': selectedCell.row === i && selectedCell.column === 3}" (click)="onCellClick(i, 3, row.duracionDias, row.precio300)">{{row.precio300}}</td>
+          <td [ngClass]="{'selected-cell': selectedCell.row === i && selectedCell.column === 4}" (click)="onCellClick(i, 4, row.duracionDias, row.precio400)">{{row.precio400}}</td>
+          <td [ngClass]="{'selected-cell': selectedCell.row === i && selectedCell.column === 5}" (click)="onCellClick(i, 5, row.duracionDias, row.precio500)">{{row.precio500}}</td>
+        </tr>
+      </tbody>
     </table>
   </div>
   <div class="registration-form">

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { Prestamo } from 'src/app/models/prestamo/prestamo';
+import { PrecioService } from 'src/app/services/precio.service';
 import { PrestamoService } from 'src/app/services/prestamo.service';
 import { ApiService } from 'src/app/services/services/api.service';
 import { AuthService } from 'src/app/services/services/auth.service';
@@ -14,13 +15,7 @@ import { UserStoreService } from 'src/app/services/user-store.service';
 export class MiTablaComponent implements OnInit {
 
 
-  data = [
-    { duration: '15 días', value150: 154.11, value200: 205.49, value300: 308.23, value400: 410.98, value500: 513.72 },
-    { duration: '20 días', value150: 155.49, value200: 207.32, value300: 310.98, value400: 414.64, value500: 518.30 },
-    { duration: '25 días', value150: 156.86, value200: 209.15, value300: 313.72, value400: 418.30, value500: 522.88 },
-    { duration: '30 días', value150: 157.23, value200: 210.98, value300: 316.47, value400: 421.96, value500: 527.45 },
-    { duration: '35 días', value150: 159.61, value200: 212.81, value300: 319.22, value400: 425.62, value500: 532.03 }
-  ];
+  data: any[] = [];
 
   public users:any = [];
   public role!:string;
@@ -32,7 +27,7 @@ export class MiTablaComponent implements OnInit {
   endDate: string = '';
   dailyPayment: number = 0;
   selectedCell: { row: number, column: number } = { row: -1, column: -1 };
-  constructor(private prestamoService: PrestamoService,private userStore: UserStoreService,private api : ApiService, private auth: AuthService,private toastr: ToastrService,) {
+  constructor(private precioService: PrecioService, private prestamoService: PrestamoService,private userStore: UserStoreService,private api : ApiService, private auth: AuthService,private toastr: ToastrService,) {
     const today = new Date();
     this.minDate = today.toISOString().split('T')[0];  // Convierte la fecha actual a formato AAAA-MM-DD
   }
@@ -42,6 +37,12 @@ export class MiTablaComponent implements OnInit {
     .subscribe((res: any)=>{
       this.users = res;
     });
+
+    this.precioService.getPrecio()
+     .subscribe(val => {
+      this.data = val;
+      console.log(val)
+     })
 
    this.userStore.getFullNameFromStore()
    .subscribe((val: any)=>{
