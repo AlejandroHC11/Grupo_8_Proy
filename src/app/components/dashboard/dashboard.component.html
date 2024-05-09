@@ -7,7 +7,7 @@
         <div class="list-group list-group-flush">
             <a *ngIf="role === 'Admin'" href="#" routerLink="/user" class="list-group-item list-group-item-action bg-light">Usuario</a>
             <a *ngIf="role === 'Inversionista'" href="#" routerLink="/jefeprestamista" class="list-group-item list-group-item-action bg-light">Jefe Prestamista</a>
-            <a *ngIf="role === 'Jefe Prestamista'" href="#" routerLink="/prestamista" class="list-group-item list-group-item-action bg-light">Prestamista</a>
+            <a *ngIf="role === 'Jefe Prestamista' || role === 'Prestamista' " href="#" routerLink="/prestamista" class="list-group-item list-group-item-action bg-light">Prestamista</a>
             <a *ngIf="role === 'Prestamista'" routerLink="/prestatario" href="#" class="list-group-item list-group-item-action bg-light">Prestatario</a>
             <a *ngIf="role === 'Prestatario' || role === 'Admin'" href="#" routerLink="/prestamo" class="list-group-item list-group-item-action bg-light">Prestamo</a>
             <a href="#" (click)="Logout()" class="list-group-item list-group-item-action bg-light">Salir</a>

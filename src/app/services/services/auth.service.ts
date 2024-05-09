@@ -40,6 +40,9 @@ export class AuthService {
  storeNameUser (nombre: string) {
   localStorage.setItem('nombre', nombre)
   }
+ storeCreatorUser (creatorUser: any){
+  localStorage.setItem('creatorUser',creatorUser)
+ }
   //
 
 
@@ -72,6 +75,9 @@ export class AuthService {
   }
   getNameFromLocalStorage(){
     return localStorage.getItem('nombre')
+  }
+  getCreatorUserFromLocalStorage(){
+    return localStorage.getItem('creatorUser')
   }
 
 }

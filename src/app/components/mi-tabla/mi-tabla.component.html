@@ -8,6 +8,14 @@
     </div>
   </nav>
   <div class="table-container">
+
+     
+    <!-- Barra de diseño ajustada para comenzar desde "S/150" -->
+    <div style="height: 30px; background-color: #66035C; color: white; text-align: center;line-height: 30px;">
+      Monto
+    </div>
+  
+
   <table class="table table-bordered">
       <thead>
         <tr>
@@ -61,6 +69,6 @@
           <label for="pagoDiario">Pago Diario</label>
           <input type="text" class="form-control" id="pagoDiario" name="pagoDiario" [(ngModel)]="dailyPayment" readonly>
         </div>
-        <button *ngIf="role === 'Prestatario' || role === 'Admin'" type="submit"  class="btn btn-dark btn-block mt-4 w-100" (click)="onRegistrar()">Registrar Solicitud</button>
+        <button *ngIf="role === 'Prestatario' || role === 'Admin'" type="submit"  class="btn btn-dark btn-block mt-4 w-100" style="background-color: #66035C; color: white;" (click)="onRegistrar()">Registrar Solicitud</button>
       </form>
     </div>

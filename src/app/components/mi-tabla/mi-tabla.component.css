@@ -14,22 +14,22 @@
   }
   
   .table-bordered {
-    border: 1px solid #dee2e6;
+    border: 1px solid #F4E5F3;
   }
   .table-bordered .selected-cell {
-    background-color: #f8d7da !important; /* Color de resalte */
-    border: 2px solid red !important; /* Borde destacado */
+    background-color: #F4E5F3 !important; /* Color de resalte */
+    border: 2px solid #8A059A !important; /* Borde destacado */
   }
   
   .table td, .table th {
     padding: 0.75rem;
     
-    border-top: 1px solid #dee2e6;
+    border-top: 1px solid #F4E5F3;
   }
   
   .table thead th {
     vertical-align: bottom;
-    border-bottom: 2px solid #dee2e6;
+    border-bottom: 2px solid #F4E5F3;
   }
  /*NAVBAR*/
  .navbar {
@@ -47,13 +47,13 @@
     margin: 40px auto;      /* Centra el formulario horizontalmente si el contenedor es más ancho */
     padding: 20px;     /* Añade algo de espacio alrededor del contenido del formulario */
     box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Opcional: Añade sombra para definir mejor el formulario */
-    background: white; /* Asegúrate de que el fondo sea blanco si es necesario */
+    background: #F4E5F3; /* Asegúrate de que el fondo sea blanco si es necesario */
   }
   /*SELECTED CELL CSS*/
   .selected-cell {
     background-color: #f8d7da; /* Color de resalte */
-    border: 2px solid red; /* Borde destacado */
-    border-top: 2px solid red; /* Especifica el borde superior si no se muestra */
+    border: 2px solid blueviolet; /* Borde destacado */
+    border-top: 2px solid blueviolet; /* Especifica el borde superior si no se muestra */
     position: relative; /* Posicionamiento relativo para asegurar la visualización del borde */
   }
   /*estilos para el nav bar*/

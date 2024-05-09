@@ -30,6 +30,13 @@ export class UserStoreService {
     localStorage.setItem('idUser', idUser);
   }
 
+  public getCreatorUserFromStore(): string | null {
+    return localStorage.getItem('creatorUser');
+  }
+  public setCreatorUserForStore(creatorUser: string) {
+    localStorage.setItem('creatorUser', creatorUser);
+  }
+
   public getRoleFromStore(){
     return this.role$.asObservable();
   }

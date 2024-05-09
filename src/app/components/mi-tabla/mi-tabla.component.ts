@@ -64,7 +64,8 @@ export class MiTablaComponent implements OnInit {
       console.error('No se encontraron dígitos en selectedDuration');
       return; // Salir de la función si no se encuentran dígitos
     }
-    const idUser = this.userStore.getIdUserFromStore(); // Asume que userStore es accesible y tiene el método correcto
+    const idUser = this.userStore.getIdUserFromStore();
+    const creatorUser = this.userStore.getCreatorUserFromStore(); // Asume que userStore es accesible y tiene el método correcto
 
     const prestamoData = {
       monto: this.selectedValue,
@@ -72,7 +73,8 @@ export class MiTablaComponent implements OnInit {
       fechaFinVigencia: this.endDate,
       diasDuracion: parseInt(match[0]),
       pagoDiario: this.dailyPayment,
-      IdPrestatario: idUser
+      IdPrestatario: idUser,
+      IdPrestamista: creatorUser
     };
 
     this.prestamoService.createPrestamo(prestamoData).subscribe({

@@ -108,6 +108,8 @@ export class LoginComponent implements OnInit {
           this.loginForm.reset();
           this.auth.storeToken(res.token);
           this.auth.storeIdUser(res.usuario.id);
+          this.auth.storeCreatorUser(res.usuario.creatorUser);
+          //////////////
           const tokernPayload = this.auth.decodedToker();
           this.userStore.setFullNameForStore(tokernPayload.name);
           this.userStore.setRoleForStore(tokernPayload.role);
