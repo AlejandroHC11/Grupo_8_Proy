@@ -1,1 +1,72 @@
-<p>solicitudes works!</p>
+<div class="solicitudes-container">
+    <h2>Solicitudes</h2>
+    <form (ngSubmit)="onFilter()" class="filter-form">
+      <label for="prestatario">Prestatario</label>
+      <input
+        type="text"
+        id="prestatario"
+        [(ngModel)]="filter.prestatario"
+        name="prestatario"
+        placeholder="Luis Quispe"
+      />
+  
+      <label for="fechaDesde">Fecha Solicitud (Desde)</label>
+      <input
+        type="date"
+        id="fechaDesde"
+        [(ngModel)]="filter.fechaDesde"
+        name="fechaDesde"
+      />
+  
+      <label for="fechaHasta">Hasta</label>
+      <input
+        type="date"
+        id="fechaHasta"
+        [(ngModel)]="filter.fechaHasta"
+        name="fechaHasta"
+      />
+  
+      <button type="submit" class="btn btn-filter">FILTRAR</button>
+    </form>
+  
+    <div class="solicitudes-table">
+      <table>
+        <thead>
+          <tr>
+            <th>N°</th>
+            <th>Monto</th>
+            <th>Pago Diario</th>
+            <th>Dias Duracion</th>
+            <th>Estado</th>
+            <th>Fecha Inicio</th>
+            <th>Fecha Fin</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let prestamo of prestamos">
+            <td>{{ prestamo.nroPrestamo }}</td>
+            <td>{{ prestamo.monto}}</td>
+            <td>{{ prestamo.pagoDiario }}</td>
+            <td>{{ prestamo.diasDuracion }}</td>
+            <td>{{ prestamo.estado }}</td>
+            <td>{{ prestamo.fechaIniVigencia }}</td>
+            <td>{{ prestamo.fechaFinVigencia }}</td>
+            <td>
+              <button class="btn btn-ver" (click)="verSolicitud(prestamo)">
+                VER
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  
+    <app-ver-solicitud
+      *ngIf="solicitudSeleccionada"
+      [prestamo]="solicitudSeleccionada"
+      (close)="cerrarModal()"
+      (aprobar)="aprobarSolicitud()"
+      (rechazar)="rechazarSolicitud()"
+    ></app-ver-solicitud>
+  </div>
+  

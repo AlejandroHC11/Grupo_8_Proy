@@ -1,0 +1,23 @@
+
+<div class="modal-backdrop" *ngIf="prestamo">
+    <div class="modal-content">
+      <h3>Detalle de Solicitud</h3>
+      <p><strong>Prestatario:</strong> {{ prestamo.nroPrestamo }}</p>
+      <p><strong>Prestamista:</strong> {{ prestamo.pagoDiario }}</p>
+      <p><strong>Monto:</strong> {{ prestamo.monto }} PEN</p>
+      <p><strong>Interés:</strong> {{ prestamo.diasDuracion }} PEN</p>
+      <p><strong>Tasa:</strong> {{ prestamo.fechaIniVigencia }}%</p>
+      <p><strong>Cuota:</strong> {{ prestamo.fechaFinVigencia }} PEN</p>
+  
+      <div class="modal-actions">
+        <button class="btn btn-aceptar" (click)="onAprobar()">Aprobar</button>
+        <button class="btn btn-rechazar" (click)="onRechazar()">Rechazar</button>
+        <button class="btn btn-cerrar" (click)="onClose()">Cerrar</button>
+      </div>
+  
+      <div class="instructions">
+        <p>Se debe guardar en la tabla <strong>cuota</strong> los 30 registros de los 30 días. La tabla solicitud se cambia a estado <strong>APROBADO</strong>.</p>
+        <p>La tabla solicitud se cambia a estado <strong>CANCELADO</strong>.</p>
+      </div>
+    </div>
+  </div>

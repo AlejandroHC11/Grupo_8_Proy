@@ -24,6 +24,7 @@ import { PrestamoComponent } from './components/prestamo/prestamo.component';
 import { MiTablaComponent } from './components/mi-tabla/mi-tabla.component';
 import { SocialLoginModule, SocialAuthServiceConfig, GoogleLoginProvider } from '@abacritt/angularx-social-login';
 import { SolicitudesComponent } from './solicitudes/solicitudes.component';
+import { VerSolicitudComponent } from './solicitudes/ver-solicitud/ver-solicitud.component';
 
 
 
@@ -44,7 +45,8 @@ import { SolicitudesComponent } from './solicitudes/solicitudes.component';
     UserComponent,
     PrestamoComponent,
     MiTablaComponent,
-    SolicitudesComponent,   
+    SolicitudesComponent,
+    VerSolicitudComponent,   
   ],
   imports: [
     BrowserAnimationsModule, 
@@ -72,7 +74,9 @@ import { SolicitudesComponent } from './solicitudes/solicitudes.component';
         { path: '', component: EmptyComponent },
         { path: 'dashboard-rigth', component: DashboardRigthComponent },
         { path: 'sign-up-form', component: SignUpFormComponent },
-        { path: 'solicitudes', component: SolicitudesComponent },
+        { path: 'solicitudes', component: SolicitudesComponent,children:[
+          {path: 'ver-solicitud', component: VerSolicitudComponent}
+        ]},
       ]},
       {path:'prestatario',component:PrestatarioComponent, children: [
         { path: '', component: EmptyComponent },

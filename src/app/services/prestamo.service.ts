@@ -18,6 +18,11 @@ export class PrestamoService {
   getPrestamoByIdPrestatario(idPrestatario: number):Observable<Prestamo[]>{
     return this.httpClient.get<Prestamo[]>(this.url + "getPrestamoByIdPrestatario?idPrestatario="+idPrestatario)
   }
+  
+  getPrestamoByIdPrestamista(idPrestamista: number):Observable<Prestamo[]>{
+    return this.httpClient.get<Prestamo[]>(this.url + "getPrestamoByIdPrestamista?idPrestamista="+idPrestamista)
+  }
+  
 
   createPrestamo(prestamo: Prestamo): Observable<Prestamo> {
     return this.httpClient.post<Prestamo>(this.url + "CrearPrestamo", prestamo);

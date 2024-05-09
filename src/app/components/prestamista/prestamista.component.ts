@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PrestamoService } from 'src/app/services/prestamo.service';
 import { ApiService } from 'src/app/services/services/api.service';
 import { AuthService } from 'src/app/services/services/auth.service';
 import { UserStoreService } from 'src/app/services/user-store.service';
@@ -12,8 +13,9 @@ export class PrestamistaComponent implements OnInit {
   public users:any = [];
   public role!:string;
   public fullName :  string = "";
-  public creatorUser :  string = "";
-  constructor(private api : ApiService,private auth: AuthService ,private userStore: UserStoreService) {}
+  public idUserPrestamista :  string = "";
+  
+  constructor(private prestamoService:PrestamoService,private api : ApiService,private auth: AuthService ,private userStore: UserStoreService) {}
   ngOnInit(){
     this.api.getUsers()
     .subscribe(res=>{
@@ -35,9 +37,11 @@ export class PrestamistaComponent implements OnInit {
   // Cargar el idUser desde el LocalStorage y asignarlo al formulario
   const idUser = this.userStore.getIdUserFromStore();
   if (idUser) {
-      this.creatorUser = idUser;
+      this.idUserPrestamista = idUser;
   }
-}
+  
+  }
+
   Logout(){
     this.auth.signOut();
   }

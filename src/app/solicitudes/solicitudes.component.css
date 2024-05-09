@@ -1,0 +1,81 @@
+.solicitudes-container {
+    width: 80%;
+    margin: auto;
+    border: 1px solid #ddd;
+   
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: white;
+  }
+  
+  .solicitudes-container h2 {
+    text-align: center;
+    color: #333;
+  }
+  
+  .filter-form {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+  }
+  
+  .filter-form label {
+    margin-right: 8px;
+    font-size: 14px;
+    color: #333;
+  }
+  
+  .filter-form input {
+    margin-right: 15px;
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  .filter-form .btn-filter {
+    background-color: #28a745;
+    color: white;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .solicitudes-table {
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: #f8f9fa;
+  }
+  
+  .solicitudes-table table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .solicitudes-table th,
+  .solicitudes-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+    font-size: 14px;
+    color: #333;
+  }
+  
+  .solicitudes-table th {
+    background-color: #f8f9fa;
+    font-weight: bold;
+  }
+  
+  .btn-ver {
+    background-color: #28a745;
+    color: white;
+    padding: 5px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
