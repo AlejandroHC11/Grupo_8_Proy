@@ -47,6 +47,11 @@ export class SolicitudesComponent {
   public fullName :  string = "";
   public idUserPrestamista :  string = "";
   public idPrestariostore : number = 0 ;
+
+  filterTabla: any = {};
+  filterPrestatario: string = '';
+  filterFechaDesde: Date | null = null;
+  filterFechaHasta: Date | null = null;
   
   constructor(private prestatarioService: PrestatarioService, private prestamoService:PrestamoService,private apiService: ApiService, private auth: AuthService, private userStore: UserStoreService){
   }
@@ -73,13 +78,8 @@ export class SolicitudesComponent {
     forkJoin(userObservables).subscribe(users => {
       this.user = users;
     });
-    // Verificando que el array no está vacío y que el primer elemento tiene un idPrestatario definido
-    if (this.prestamos.length > 0 && this.prestamos[0].idPrestatario !== undefined) {
-      this.idPrestariostore = this.prestamos[0].idPrestatario;
-      //this.loadUserData();
-      //console.log("idPrestamistastore almacenado: ", this.idPrestariostore);
-    }
-  });
+    
+    });
 
  }
 
@@ -105,9 +105,58 @@ export class SolicitudesComponent {
  
   solicitudSeleccionada: Prestamo | null = null;
 
-  onFilter(): void {
-    // Lógica para filtrar solicitudes
-    console.log('Filtro:', this.filter);
+  onFilter() {
+    if (this.filterPrestatario || this.filterFechaDesde || this.filterFechaHasta) {
+      this.prestamoService.getPrestamoByIdPrestamista(parseInt(this.idUserPrestamista)).subscribe(prestamos => {
+        forkJoin(
+          prestamos.map((prestamo: any) => {
+            return this.apiService.getUserById(prestamo.idPrestatario);
+          })
+        ).subscribe(users => {
+          this.prestamos = prestamos.filter((prestamo: any, index: number) => {
+            const user = users[index];
+            return this.filterMatches(user, prestamo);
+          });
+  
+          this.user = this.user.filter(user => {
+            return this.filterMatches(user);
+          });
+        });
+      });
+    } else {
+      this.prestamoService.getPrestamoByIdPrestamista(parseInt(this.idUserPrestamista)).subscribe(prestamos => {
+        this.prestamos = prestamos;
+  
+        const userObservables = this.prestamos.map((prestamo: any) => {
+          return this.apiService.getUserById(prestamo.idPrestatario);
+        });
+  
+        forkJoin(userObservables).subscribe(users => {
+          this.user = users;
+        });
+  
+      });
+    }
+  }
+  
+  filterMatches(user: any, prestamo?: any): boolean {
+    let prestatarioMatch = true;
+    let fechaDesdeMatch = true;
+    let fechaHastaMatch = true;
+  
+    if (this.filterPrestatario) {
+      prestatarioMatch = user.firstName === this.filterPrestatario || user.lastName === this.filterPrestatario || (user.firstName + " " + user.lastName) === this.filterPrestatario.trim();
+    }
+  
+    if (prestamo && this.filterFechaDesde) {
+      fechaDesdeMatch = new Date(prestamo.fechaIniVigencia) >= new Date(this.filterFechaDesde);
+    }
+  
+    if (prestamo && this.filterFechaHasta) {
+      fechaHastaMatch = new Date(prestamo.fechaFinVigencia) <= new Date(this.filterFechaHasta);
+    }
+  
+    return prestatarioMatch && fechaDesdeMatch && fechaHastaMatch;
   }
 
   verSolicitud(prestamo: Prestamo): void {
@@ -119,15 +168,13 @@ export class SolicitudesComponent {
   }
 
   aprobarSolicitud(): void {
-   // Verificar que solicitudSeleccionada y nroPrestamo no sean undefined
    if (this.solicitudSeleccionada && this.solicitudSeleccionada.nroPrestamo !== undefined) {
     const solicitudId = this.solicitudSeleccionada.nroPrestamo;
     this.prestamoService.updateEstadoPrestamo(solicitudId, 'APROBADO').subscribe({
       next: (res) => {
         console.log('Solicitud aprobada:', res);
-        this.updatePrestamoInList(res); // Actualizar la lista de préstamos
+        this.updatePrestamoInList(res);
         this.solicitudSeleccionada = null;
-        // Agrega aquí más lógica si es necesario
       },
       error: (err) => console.error('Error al aprobar la solicitud:', err)
     });
@@ -135,15 +182,13 @@ export class SolicitudesComponent {
   }
 
   rechazarSolicitud(): void {
-     // Verificar que solicitudSeleccionada y nroPrestamo no sean undefined
   if (this.solicitudSeleccionada && this.solicitudSeleccionada.nroPrestamo !== undefined) {
     this.prestamoService.updateEstadoPrestamo(this.solicitudSeleccionada.nroPrestamo, 'RECHAZADO')
       .subscribe({
         next: (res) => {
           console.log('Solicitud rechazada:', res);
-          this.updatePrestamoInList(res); // Actualizar la lista de préstamos
+          this.updatePrestamoInList(res);
           this.solicitudSeleccionada = null;
-          // Agrega aquí más lógica si es necesario
         },
         error: (err) => console.error('Error al rechazar la solicitud:', err)
       });
