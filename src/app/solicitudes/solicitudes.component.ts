@@ -7,6 +7,7 @@ import { ApiService } from '../services/services/api.service';
 import { Users } from '../models/users/users';
 import { PrestatarioService } from '../services/prestatario.service';
 import { forkJoin } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 
 interface Solicitud {
   numero: string;
@@ -48,7 +49,7 @@ export class SolicitudesComponent {
   public idUserPrestamista :  string = "";
   public idPrestariostore : number = 0 ;
   
-  constructor(private prestatarioService: PrestatarioService, private prestamoService:PrestamoService,private apiService: ApiService, private auth: AuthService, private userStore: UserStoreService){
+  constructor(private prestatarioService: PrestatarioService, private prestamoService:PrestamoService,private apiService: ApiService, private auth: AuthService, private userStore: UserStoreService,private toastr: ToastrService){
   }
   async ngOnInit(){
    
@@ -125,6 +126,7 @@ export class SolicitudesComponent {
     this.prestamoService.updateEstadoPrestamo(solicitudId, 'APROBADO').subscribe({
       next: (res) => {
         console.log('Solicitud aprobada:', res);
+        this.toastr.success("Solicitud aprobada", 'SUCESS');
         this.updatePrestamoInList(res); // Actualizar la lista de préstamos
         this.solicitudSeleccionada = null;
         // Agrega aquí más lógica si es necesario
@@ -141,6 +143,7 @@ export class SolicitudesComponent {
       .subscribe({
         next: (res) => {
           console.log('Solicitud rechazada:', res);
+          this.toastr.warning("Solicitud Rechazada", 'Atención');
           this.updatePrestamoInList(res); // Actualizar la lista de préstamos
           this.solicitudSeleccionada = null;
           // Agrega aquí más lógica si es necesario

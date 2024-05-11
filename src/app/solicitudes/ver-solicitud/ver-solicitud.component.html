@@ -2,12 +2,12 @@
 <div class="modal-backdrop" *ngIf="prestamo">
     <div class="modal-content">
       <h3>Detalle de Solicitud</h3>
-      <p><strong>Código:</strong> {{ prestamo.nroPrestamo }}</p>
-      <p><strong>Pago Diario:</strong> {{ prestamo.pagoDiario }} PEN</p>
-      <p><strong>Monto:</strong> {{ prestamo.monto }} PEN</p>
-      <p><strong>Cuotas:</strong> {{ prestamo.diasDuracion }} </p>
-      <p><strong>Inicio de Vigencia:</strong> {{ prestamo.fechaIniVigencia | date:'dd-MM-yyyy' }}</p>
-      <p><strong>Fin de Vigencia:</strong> {{ prestamo.fechaFinVigencia | date:'dd-MM-yyyy'  }} </p>
+      <p><i class="fas fa-barcode"></i> <strong>  Código:</strong> {{ prestamo.nroPrestamo }}</p>
+      <p><i class="fas fa-coins"></i> <strong>  Pago Diario:</strong> {{ prestamo.pagoDiario }} PEN</p>
+      <p><i class="fas fa-wallet"></i> <strong>  Monto:</strong> {{ prestamo.monto }} PEN</p>
+      <p><i class="fas fa-calendar-alt"></i> <strong>  Cuotas:</strong> {{ prestamo.diasDuracion }} </p>
+      <p><i class="fas fa-calendar-check"></i> <strong>  Inicio de Vigencia:</strong> {{ prestamo.fechaIniVigencia | date:'dd-MM-yyyy' }}</p>
+      <p><i class="fas fa-calendar-times"></i> <strong>  Fin de Vigencia:</strong> {{ prestamo.fechaFinVigencia | date:'dd-MM-yyyy'  }} </p>
   
       <div class="modal-actions">
         <button class="btn btn-aceptar" (click)="onAprobar()">Aprobar</button>
@@ -16,8 +16,8 @@
       </div>
   
       <div class="instructions">
-        <p>Se debe guardar en la tabla <strong>cuota</strong> los 30 registros de los 30 días. La tabla solicitud se cambia a estado <strong>APROBADO</strong>.</p>
-        <p>La tabla solicitud se cambia a estado <strong>CANCELADO</strong>.</p>
+        <p>Los registros se guardaran en el repositorio <strong>CUOTA</strong> de ser aprobada la solicitud <strong>(APROBADO)</strong>.</p>
+        <p>La solicitud cambia a estado <strong>RECHAZADO</strong> de ser rechazada la solicitud<strong> (RECHAZADO)</strong>.</p>
       </div>
     </div>
   </div>
