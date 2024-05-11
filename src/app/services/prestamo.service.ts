@@ -27,4 +27,8 @@ export class PrestamoService {
   createPrestamo(prestamo: Prestamo): Observable<Prestamo> {
     return this.httpClient.post<Prestamo>(this.url + "CrearPrestamo", prestamo);
   }
+
+  updateEstadoPrestamo(nroPrestamo: number, nuevoEstado: string): Observable<Prestamo> {
+    return this.httpClient.put<Prestamo>(`${this.url}ActualizarEstadoPrestamo/${nroPrestamo}`, { nuevoEstado });
+  }
 }

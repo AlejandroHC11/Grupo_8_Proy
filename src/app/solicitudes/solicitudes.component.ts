@@ -3,6 +3,8 @@ import { PrestamoService } from '../services/prestamo.service';
 import { AuthService } from '../services/services/auth.service';
 import { UserStoreService } from '../services/user-store.service';
 import { Prestamo } from '../models/prestamo/prestamo';
+import { ApiService } from '../services/services/api.service';
+import { Users } from '../models/users/users';
 
 interface Solicitud {
   numero: string;
@@ -22,7 +24,8 @@ export class SolicitudesComponent {
   filter = {
     prestatario: '',
     fechaDesde: '',
-    fechaHasta: ''
+    fechaHasta: '',
+    fullNombres:''
   };
 
   solicitudes: Solicitud[] = [
@@ -36,11 +39,13 @@ export class SolicitudesComponent {
       tasa: 10
     }
   ];
-  prestamos:Prestamo[]=[]
+  prestamos:Prestamo[]=[];
+  userDetails: Users = new Users();
   public fullName :  string = "";
   public idUserPrestamista :  string = "";
+  public idPrestariostore : number = 0 ;
   
-  constructor(private prestamoService:PrestamoService, private auth: AuthService, private userStore: UserStoreService){
+  constructor(private prestamoService:PrestamoService,private apiService: ApiService, private auth: AuthService, private userStore: UserStoreService){
   }
   ngOnInit(){
    
@@ -56,9 +61,36 @@ export class SolicitudesComponent {
    }
  
     this.prestamoService.getPrestamoByIdPrestamista(parseInt(this.idUserPrestamista)).subscribe(res=>{
-     this.prestamos=res
+     this.prestamos=res;
+       // Verificando que el array no está vacío y que el primer elemento tiene un idPrestatario definido
+    if (this.prestamos.length > 0 && this.prestamos[0].idPrestatario !== undefined) {
+      this.idPrestariostore = this.prestamos[0].idPrestatario;
+      this.loadUserData();
+   //   console.log("idPrestamistastore almacenado: ", this.idPrestariostore);
+    }
+    
    })
+
  }
+
+ loadUserData(): void {
+  if (this.idPrestariostore !== undefined) {
+    this.apiService.getUserById(this.idPrestariostore).subscribe({
+      next: (userData) => {
+        console.log("Datos del usuario:", userData);
+        // Aquí puedes asignar los datos recibidos a una propiedad para su uso en el template o en lógica adicional
+        this.userDetails = userData;
+        this.filter.fullNombres = `${userData.firstName} ${userData.lastName}`;
+        
+      },
+      error: (error) => {
+        console.error("Error al obtener datos del usuario:", error);
+      }
+    });
+  } else {
+    console.log("ID de prestamista no definido");
+  }
+}
   
  
   solicitudSeleccionada: Prestamo | null = null;
@@ -77,20 +109,40 @@ export class SolicitudesComponent {
   }
 
   aprobarSolicitud(): void {
-    if (this.solicitudSeleccionada) {
-      // Lógica para aprobar la solicitud
-      console.log('Aprobar solicitud:', this.solicitudSeleccionada);
-      // Simula el cambio de estado a "APROBADO"
-      this.solicitudSeleccionada = null;
-    }
+   // Verificar que solicitudSeleccionada y nroPrestamo no sean undefined
+   if (this.solicitudSeleccionada && this.solicitudSeleccionada.nroPrestamo !== undefined) {
+    const solicitudId = this.solicitudSeleccionada.nroPrestamo;
+    this.prestamoService.updateEstadoPrestamo(solicitudId, 'APROBADO').subscribe({
+      next: (res) => {
+        console.log('Solicitud aprobada:', res);
+        this.updatePrestamoInList(res); // Actualizar la lista de préstamos
+        this.solicitudSeleccionada = null;
+        // Agrega aquí más lógica si es necesario
+      },
+      error: (err) => console.error('Error al aprobar la solicitud:', err)
+    });
+   }
   }
 
   rechazarSolicitud(): void {
-    if (this.solicitudSeleccionada) {
-      // Lógica para rechazar la solicitud
-      console.log('Rechazar solicitud:', this.solicitudSeleccionada);
-      // Simula el cambio de estado a "CANCELADO"
-      this.solicitudSeleccionada = null;
+     // Verificar que solicitudSeleccionada y nroPrestamo no sean undefined
+  if (this.solicitudSeleccionada && this.solicitudSeleccionada.nroPrestamo !== undefined) {
+    this.prestamoService.updateEstadoPrestamo(this.solicitudSeleccionada.nroPrestamo, 'RECHAZADO')
+      .subscribe({
+        next: (res) => {
+          console.log('Solicitud rechazada:', res);
+          this.updatePrestamoInList(res); // Actualizar la lista de préstamos
+          this.solicitudSeleccionada = null;
+          // Agrega aquí más lógica si es necesario
+        },
+        error: (err) => console.error('Error al rechazar la solicitud:', err)
+      });
+   }
+  }
+  updatePrestamoInList(updatedPrestamo: Prestamo): void {
+    const index = this.prestamos.findIndex(p => p.nroPrestamo === updatedPrestamo.nroPrestamo);
+    if (index !== -1) {
+      this.prestamos[index] = updatedPrestamo;
     }
   }
 }

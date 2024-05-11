@@ -3,12 +3,12 @@
     <form (ngSubmit)="onFilter()" class="filter-form">
       <label for="prestatario">Prestatario</label>
       <input
-        type="text"
-        id="prestatario"
-        [(ngModel)]="filter.prestatario"
-        name="prestatario"
-        placeholder="Luis Quispe"
-      />
+            type="text"
+            id="prestatario"
+            [(ngModel)]="filter.prestatario"  
+            name="prestatario"
+            readonly 
+          />
   
       <label for="fechaDesde">Fecha Solicitud (Desde)</label>
       <input
@@ -34,12 +34,14 @@
         <thead>
           <tr>
             <th>N°</th>
+            <!-- <th>Prestatario</th> -->
             <th>Monto</th>
             <th>Pago Diario</th>
             <th>Dias Duracion</th>
             <th>Estado</th>
             <th>Fecha Inicio</th>
             <th>Fecha Fin</th>
+            <th>Acciones</th>
           </tr>
         </thead>
         <tbody>
@@ -48,9 +50,12 @@
             <td>{{ prestamo.monto}}</td>
             <td>{{ prestamo.pagoDiario }}</td>
             <td>{{ prestamo.diasDuracion }}</td>
-            <td>{{ prestamo.estado }}</td>
-            <td>{{ prestamo.fechaIniVigencia }}</td>
-            <td>{{ prestamo.fechaFinVigencia }}</td>
+            <td [style.color]="prestamo.estado === 'APROBADO' ? 'green' : prestamo.estado === 'RECHAZADO' ? 'red' : 'black'" 
+                [style.font-weight]="prestamo.estado === 'APROBADO' || prestamo.estado === 'RECHAZADO' ? 'bold' : 'normal'">
+                {{ prestamo.estado }}
+            </td>
+            <td>{{ prestamo.fechaIniVigencia | date:'dd-MM-yyyy'  }}</td>
+            <td>{{ prestamo.fechaFinVigencia | date:'dd-MM-yyyy'  }}</td>
             <td>
               <button class="btn btn-ver" (click)="verSolicitud(prestamo)">
                 VER
