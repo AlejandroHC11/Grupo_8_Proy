@@ -19,6 +19,10 @@ export class PrestamistaService {
     return this.httpClient.get<any>(this.url+"GetPrestamista");
   }
 
+  getPrestamistaByIdSede(idSede: number){
+    return this.httpClient.get<any>(this.url+"getPrestamistaByIdSede?idSede="+idSede);
+  }
+
   getPrestamistaByCreatorUser(creatorUser: string) {
     return this.httpClient.get<any>(this.url+"getPrestamistaByCreatorUser?creatorUser="+creatorUser);
   }

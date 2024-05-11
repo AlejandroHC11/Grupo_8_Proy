@@ -8,6 +8,7 @@ import { ToastrService } from 'ngx-toastr';
 import { UserStoreService } from 'src/app/services/user-store.service';
 import { first } from 'rxjs';
 import { SedeService } from 'src/app/services/sede.service';
+import { PrestamistaService } from 'src/app/services/prestamista.service';
 
 @Component({
   selector: 'app-signup',
@@ -22,9 +23,11 @@ export class SignupComponent implements OnInit {
   eyeIcon: string = "fa-solid fa-eye-slash";
   signUpForm!: FormGroup;
   public creatorUser :  string = "";
+  public prestamistas:any = [];
+  public idPrestamista:any = [];
   
 
-  constructor(private fb: FormBuilder, private auth: AuthService, private sedeService: SedeService, private prestatarioService: PrestatarioService, private router: Router,private toastr: ToastrService,private userStore: UserStoreService) { }
+  constructor(private prestamistaService: PrestamistaService, private fb: FormBuilder, private auth: AuthService, private sedeService: SedeService, private prestatarioService: PrestatarioService, private router: Router,private toastr: ToastrService,private userStore: UserStoreService) { }
 
   ngOnInit(): void {
     this.signUpForm = this.fb.group({
@@ -54,45 +57,60 @@ export class SignupComponent implements OnInit {
   onSingup(){
     if(this.signUpForm.valid){
 
-      const userData = {
-        userName: this.signUpForm.value.userName,
-        password: this.signUpForm.value.password,
-        firstName: this.signUpForm.value.firstName,
-        lastName: this.signUpForm.value.lastName,
-        email: this.signUpForm.value.email,
-        role: "Prestatario",
-        creatorUser: null
-      }
-
-      this.auth.signUp(userData)
+      this.prestamistaService.getPrestamistaByIdSede(this.signUpForm.value.idSede)
       .subscribe({
         next:(res=>{
+          if (res.length === 0) {
+            this.prestamistas = null
+            this.toastr.warning("ERROR",'There are not prestamistas to assign');
+          }else{
+            this.prestamistas = res;
 
-          const idCreatedUser = res.idUser
+            this.prestamistas.forEach((prestamista: any) => {
+              this.idPrestamista.push(prestamista.idPrestamista)
+            });
+            const randomPrestamistaId = this.idPrestamista[Math.floor(Math.random() * this.idPrestamista.length)];
+            const userData = {
+              userName: this.signUpForm.value.userName,
+              password: this.signUpForm.value.password,
+              firstName: this.signUpForm.value.firstName,
+              lastName: this.signUpForm.value.lastName,
+              email: this.signUpForm.value.email,
+              role: "Prestatario",
+              creatorUser: randomPrestamistaId.toString()
+            }
 
-          const prestatarioData = {
-            idSede: this.signUpForm.value.idSede,
-            dni: this.signUpForm.value.dni,
-            direccion: this.signUpForm.value.direccion,
-            idUser: idCreatedUser
-          }
+            this.auth.signUp(userData)
+            .subscribe({
+              next:(res=>{
 
-          this.prestatarioService.createPrestatario(prestatarioData)
-          .subscribe({
-            next:(res=>{
-          })
-          })
+                const idCreatedUser = res.idUser
+
+                const prestatarioData = {
+                  idSede: this.signUpForm.value.idSede,
+                  dni: this.signUpForm.value.dni,
+                  direccion: this.signUpForm.value.direccion,
+                  idUser: idCreatedUser
+                }
+
+                this.prestatarioService.createPrestatario(prestatarioData)
+                .subscribe({
+                  next:(res=>{
+                })
+                })
           
-          alert(res.message);
-          this.signUpForm.reset();
-          this.router.navigate(['login']);
-        })
-        ,error:(err=>{
-          alert(err?.error.message)
-          this.toastr.warning("Register Failed", 'ERROR');
-        })
+                alert(res.message);
+                this.signUpForm.reset();
+                this.router.navigate(['login']);
+              })
+              ,error:(err=>{
+                alert(err?.error.message)
+                this.toastr.warning("Register Failed", 'ERROR');
+              })
       })
-
+          }       
+      })
+      })
     }else{
       ValidateForm.validateAllFormFields(this.signUpForm)
       this.toastr.warning("ERROR",'Login Failed');

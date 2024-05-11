@@ -74,9 +74,6 @@ import { VerSolicitudComponent } from './solicitudes/ver-solicitud/ver-solicitud
         { path: '', component: EmptyComponent },
         { path: 'dashboard-rigth', component: DashboardRigthComponent },
         { path: 'sign-up-form', component: SignUpFormComponent },
-        { path: 'solicitudes', component: SolicitudesComponent,children:[
-          {path: 'ver-solicitud', component: VerSolicitudComponent}
-        ]},
       ]},
       {path:'prestatario',component:PrestatarioComponent, children: [
         { path: '', component: EmptyComponent },
@@ -86,7 +83,10 @@ import { VerSolicitudComponent } from './solicitudes/ver-solicitud/ver-solicitud
       {path:'prestamo',component:PrestamoComponent, children: [
         { path: '', component: EmptyComponent },
         { path: 'prestamos', component: PrestamosComponent },
-        { path: 'mi-tabla', component: MiTablaComponent }
+        { path: 'mi-tabla', component: MiTablaComponent },
+        { path: 'solicitudes', component: SolicitudesComponent,children:[
+          {path: 'ver-solicitud', component: VerSolicitudComponent}
+        ]}
       ]},
       {path:'dashboard',component:DashboardComponent, canActivate: [AuthGuard]},
       {path: '**', redirectTo: 'login', pathMatch: 'full'}

@@ -4,9 +4,8 @@
         <h5 id="name">Hola, {{fullName}} - {{role}} - {{idUserPrestamista}}</h5>
     </div>
     <button class="button" [routerLink]="['/dashboard']">Menu Principal</button> 
-    <button class="button" [routerLink]="['/prestamista/solicitudes']">Ver Solicitudes</button>
     <button class="button" [routerLink]="['/prestamista/dashboard-rigth']">Prestamistas</button> 
-    <button *ngIf="role === 'Jefe Prestamista'" class="button" [routerLink]="['/prestamista/sign-up-form']">Nuevo Prestamista</button>
+    <button class="button" [routerLink]="['/prestamista/sign-up-form']">Nuevo Prestamista</button>
     <button type="submit" class="button" (click)="Logout()">Salir</button>
    
 </div>

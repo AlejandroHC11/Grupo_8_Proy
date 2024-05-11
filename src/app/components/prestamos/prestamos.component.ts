@@ -13,6 +13,7 @@ export class PrestamosComponent implements OnInit{
   prestamos:Prestamo[]=[]
   public fullName :  string = "";
   public creatorUser :  string = "";
+  public role!:string;
   constructor(private prestamoService:PrestamoService, private auth: AuthService, private userStore: UserStoreService){
   }
   ngOnInit(){
@@ -22,14 +23,26 @@ export class PrestamosComponent implements OnInit{
     let fullNameFromToken = this.auth.getfullNameFromToker();
     this.fullName = val || fullNameFromToken
    }) 
+   this.userStore.getRoleFromStore()
+   .subscribe(val => {
+    const roleFromToken = this.auth.getRolFromToker();
+    this.role = val || roleFromToken;
+   })
    // Cargar el idUser desde el LocalStorage y asignarlo al formulario
   const idUser = this.userStore.getIdUserFromStore();
   if (idUser) {
       this.creatorUser = idUser;
   }
-
-   this.prestamoService.getPrestamoByIdPrestatario(parseInt(this.creatorUser)).subscribe(res=>{
-    this.prestamos=res
-  })
+  
+  if(this.role=="Prestatario"){
+    this.prestamoService.getPrestamoByIdPrestatario(parseInt(this.creatorUser)).subscribe(res=>{
+      this.prestamos=res
+    })
+  }else if(this.role=="Admin"){
+    this.prestamoService.getPrestamos().subscribe(res=>{
+      this.prestamos=res
+    })
+  }   
+   
 }
 }

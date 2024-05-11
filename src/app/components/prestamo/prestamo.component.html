@@ -5,9 +5,10 @@
         <img id="profile" src="assets/img/profile.png" alt="Profile">
         <h5 id="name">Hola, {{fullName}} - {{role}} - {{creatorUser}}</h5>
     </div>
-    <button class="button" [routerLink]="['/dashboard']">Menu Principal</button> 
-    <button class="button" [routerLink]="['/prestamo/mi-tabla']">Solicitud de préstamo</button>
-    <button class="button" [routerLink]="['/prestamo/prestamos']">Ver estado de préstamo</button>
+    <button class="button" [routerLink]="['/dashboard']">Menu Principal</button>
+    <button *ngIf="role === 'Prestamista' || role === 'Admin'" class="button" [routerLink]="['/prestamo/solicitudes']">Ver Solicitudes</button> 
+    <button *ngIf="role === 'Prestatario' || role === 'Admin'" class="button" [routerLink]="['/prestamo/mi-tabla']">Solicitud de préstamo</button>
+    <button *ngIf="role === 'Prestatario' || role === 'Admin'" class="button" [routerLink]="['/prestamo/prestamos']">Ver estado de préstamo</button>
     <button type="submit" class="button" (click)="Logout()">Salir</button>  
 </div>
 <div id="right-container" class="col-lg-9">
