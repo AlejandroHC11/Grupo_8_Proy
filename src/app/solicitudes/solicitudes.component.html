@@ -34,7 +34,7 @@
         <thead>
           <tr>
             <th>N°</th>
-            <!-- <th>Prestatario</th> -->
+            <th>Prestatario</th>
             <th>Monto</th>
             <th>Pago Diario</th>
             <th>Dias Duracion</th>
@@ -45,8 +45,9 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let prestamo of prestamos">
+          <tr *ngFor="let prestamo of prestamos; let i = index">
             <td>{{ prestamo.nroPrestamo }}</td>
+            <td>{{ user[i].firstName }} {{ user[i].lastName }}</td>
             <td>{{ prestamo.monto}}</td>
             <td>{{ prestamo.pagoDiario }}</td>
             <td>{{ prestamo.diasDuracion }}</td>

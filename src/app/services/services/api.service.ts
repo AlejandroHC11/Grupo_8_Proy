@@ -15,7 +15,7 @@ export class ApiService {
     return this.http.get<any>(this.baseUrlUser);
   }
   getUserById(userId: number) {
-    return this.http.get<any>(this.baseUrlUser+"getUserById?clienteId="+userId);
+    return this.http.get<any>(this.baseUrlUser+"getUserById?userId="+userId);
   }
 
 }

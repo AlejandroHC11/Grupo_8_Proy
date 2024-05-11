@@ -22,4 +22,8 @@ export class PrestatarioService {
   getPrestatarioByCreatorUser(creatorUser: string) {
     return this.httpClient.get<any>(this.url+"getPrestatarioByCreatorUser?creatorUser="+creatorUser);
   }
+
+  getPrestatarioById(prestatarioId: number) {
+    return this.httpClient.get<any>(this.url + "getPrestatarioById?prestatarioId=" + prestatarioId);
+  }
 }

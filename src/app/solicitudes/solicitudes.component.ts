@@ -5,6 +5,8 @@ import { UserStoreService } from '../services/user-store.service';
 import { Prestamo } from '../models/prestamo/prestamo';
 import { ApiService } from '../services/services/api.service';
 import { Users } from '../models/users/users';
+import { PrestatarioService } from '../services/prestatario.service';
+import { forkJoin } from 'rxjs';
 
 interface Solicitud {
   numero: string;
@@ -39,15 +41,16 @@ export class SolicitudesComponent {
       tasa: 10
     }
   ];
-  prestamos:Prestamo[]=[];
+  user:any[]=[];
+  prestamos:any[]=[];
   userDetails: Users = new Users();
   public fullName :  string = "";
   public idUserPrestamista :  string = "";
   public idPrestariostore : number = 0 ;
   
-  constructor(private prestamoService:PrestamoService,private apiService: ApiService, private auth: AuthService, private userStore: UserStoreService){
+  constructor(private prestatarioService: PrestatarioService, private prestamoService:PrestamoService,private apiService: ApiService, private auth: AuthService, private userStore: UserStoreService){
   }
-  ngOnInit(){
+  async ngOnInit(){
    
     this.userStore.getFullNameFromStore()
     .subscribe(val=>{
@@ -59,17 +62,24 @@ export class SolicitudesComponent {
    if (idUser) {
        this.idUserPrestamista = idUser;
    }
- 
-    this.prestamoService.getPrestamoByIdPrestamista(parseInt(this.idUserPrestamista)).subscribe(res=>{
-     this.prestamos=res;
-       // Verificando que el array no está vacío y que el primer elemento tiene un idPrestatario definido
+
+   this.prestamoService.getPrestamoByIdPrestamista(parseInt(this.idUserPrestamista)).subscribe(prestamos => {
+    this.prestamos = prestamos;
+
+    const userObservables = this.prestamos.map((prestamo: any) => {
+      return this.apiService.getUserById(prestamo.idPrestatario);
+    });
+  
+    forkJoin(userObservables).subscribe(users => {
+      this.user = users;
+    });
+    // Verificando que el array no está vacío y que el primer elemento tiene un idPrestatario definido
     if (this.prestamos.length > 0 && this.prestamos[0].idPrestatario !== undefined) {
       this.idPrestariostore = this.prestamos[0].idPrestatario;
-      this.loadUserData();
-   //   console.log("idPrestamistastore almacenado: ", this.idPrestariostore);
+      //this.loadUserData();
+      //console.log("idPrestamistastore almacenado: ", this.idPrestariostore);
     }
-    
-   })
+  });
 
  }
 
@@ -80,7 +90,7 @@ export class SolicitudesComponent {
         console.log("Datos del usuario:", userData);
         // Aquí puedes asignar los datos recibidos a una propiedad para su uso en el template o en lógica adicional
         this.userDetails = userData;
-        this.filter.fullNombres = `${userData.firstName} ${userData.lastName}`;
+        //this.filter.fullNombres = `${userData.firstName} ${userData.lastName}`;
         
       },
       error: (error) => {
