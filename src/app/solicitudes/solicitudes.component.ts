@@ -174,12 +174,9 @@ export class SolicitudesComponent {
     this.prestamoService.updateEstadoPrestamo(solicitudId, 'APROBADO').subscribe({
       next: (res) => {
         console.log('Solicitud aprobada:', res);
-<<<<<<< HEAD
+
         this.toastr.success("Solicitud aprobada", 'SUCESS');
         this.updatePrestamoInList(res); // Actualizar la lista de préstamos
-=======
-        this.updatePrestamoInList(res);
->>>>>>> 14d729154249bd284bea9a0c53f62e6101fdabca
         this.solicitudSeleccionada = null;
       },
       error: (err) => console.error('Error al aprobar la solicitud:', err)
@@ -193,12 +190,9 @@ export class SolicitudesComponent {
       .subscribe({
         next: (res) => {
           console.log('Solicitud rechazada:', res);
-<<<<<<< HEAD
+
           this.toastr.warning("Solicitud Rechazada", 'Atención');
           this.updatePrestamoInList(res); // Actualizar la lista de préstamos
-=======
-          this.updatePrestamoInList(res);
->>>>>>> 14d729154249bd284bea9a0c53f62e6101fdabca
           this.solicitudSeleccionada = null;
         },
         error: (err) => console.error('Error al rechazar la solicitud:', err)
